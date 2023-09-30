@@ -1,0 +1,727 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D98C954D-D9BB-496A-B14A-C370254BA278}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuanLySinhVien</RootNamespace>
+    <AssemblyName>QuanLySinhVien</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44358</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\css\animate.html" />
+    <Content Include="Assets\css\assets\css\animate.html" />
+    <Content Include="Assets\css\assets\css\assets\css\animate.html" />
+    <Content Include="Assets\css\assets\css\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\css\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\assets\css\assets\css\style.html" />
+    <Content Include="Assets\css\assets\css\assets\img\favicon.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-1.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-10.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-2.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-3.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-4.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-5.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-6.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-7.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-8.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image-9.html" />
+    <Content Include="Assets\css\assets\css\assets\img\image.html" />
+    <Content Include="Assets\css\assets\css\assets\img\logo.html" />
+    <Content Include="Assets\css\assets\css\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\css\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\assets\css\assets\js\main.html" />
+    <Content Include="Assets\css\assets\css\assets\js\popper.min.html" />
+    <Content Include="Assets\css\assets\css\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\assets\css\assets\js\wow.min.html" />
+    <Content Include="Assets\css\assets\css\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\assets\css\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\css\html-template\departments.html" />
+    <Content Include="Assets\css\assets\css\html-template\event.html" />
+    <Content Include="Assets\css\assets\css\html-template\expenses.html" />
+    <Content Include="Assets\css\assets\css\html-template\fees-collections.html" />
+    <Content Include="Assets\css\assets\css\html-template\holiday.html" />
+    <Content Include="Assets\css\assets\css\html-template\index.html" />
+    <Content Include="Assets\css\assets\css\html-template\library.html" />
+    <Content Include="Assets\css\assets\css\html-template\salary.html" />
+    <Content Include="Assets\css\assets\css\html-template\subjects.html" />
+    <Content Include="Assets\css\assets\css\html-template\teacher-details.html" />
+    <Content Include="Assets\css\assets\css\html-template\teachers.html" />
+    <Content Include="Assets\css\assets\css\index.html" />
+    <Content Include="Assets\css\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\assets\css\style.html" />
+    <Content Include="Assets\css\assets\img\assets\css\animate.html" />
+    <Content Include="Assets\css\assets\img\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\img\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\assets\img\assets\css\style.html" />
+    <Content Include="Assets\css\assets\img\assets\img\favicon.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-1.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-10.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-2.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-3.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-4.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-5.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-6.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-7.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-8.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image-9.html" />
+    <Content Include="Assets\css\assets\img\assets\img\image.html" />
+    <Content Include="Assets\css\assets\img\assets\img\logo.html" />
+    <Content Include="Assets\css\assets\img\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\img\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\assets\img\assets\js\main.html" />
+    <Content Include="Assets\css\assets\img\assets\js\popper.min.html" />
+    <Content Include="Assets\css\assets\img\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\assets\img\assets\js\wow.min.html" />
+    <Content Include="Assets\css\assets\img\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\assets\img\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\assets\img\favicon.html" />
+    <Content Include="Assets\css\assets\img\html-template\departments.html" />
+    <Content Include="Assets\css\assets\img\html-template\event.html" />
+    <Content Include="Assets\css\assets\img\html-template\expenses.html" />
+    <Content Include="Assets\css\assets\img\html-template\fees-collections.html" />
+    <Content Include="Assets\css\assets\img\html-template\holiday.html" />
+    <Content Include="Assets\css\assets\img\html-template\index.html" />
+    <Content Include="Assets\css\assets\img\html-template\library.html" />
+    <Content Include="Assets\css\assets\img\html-template\salary.html" />
+    <Content Include="Assets\css\assets\img\html-template\subjects.html" />
+    <Content Include="Assets\css\assets\img\html-template\teacher-details.html" />
+    <Content Include="Assets\css\assets\img\html-template\teachers.html" />
+    <Content Include="Assets\css\assets\img\image-1.html" />
+    <Content Include="Assets\css\assets\img\image-10.html" />
+    <Content Include="Assets\css\assets\img\image-2.html" />
+    <Content Include="Assets\css\assets\img\image-3.html" />
+    <Content Include="Assets\css\assets\img\image-4.html" />
+    <Content Include="Assets\css\assets\img\image-5.html" />
+    <Content Include="Assets\css\assets\img\image-6.html" />
+    <Content Include="Assets\css\assets\img\image-7.html" />
+    <Content Include="Assets\css\assets\img\image-8.html" />
+    <Content Include="Assets\css\assets\img\image-9.html" />
+    <Content Include="Assets\css\assets\img\image.html" />
+    <Content Include="Assets\css\assets\img\index.html" />
+    <Content Include="Assets\css\assets\img\logo.html" />
+    <Content Include="Assets\css\assets\js\assets\css\animate.html" />
+    <Content Include="Assets\css\assets\js\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\js\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\assets\js\assets\css\style.html" />
+    <Content Include="Assets\css\assets\js\assets\img\favicon.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-1.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-10.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-2.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-3.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-4.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-5.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-6.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-7.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-8.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image-9.html" />
+    <Content Include="Assets\css\assets\js\assets\img\image.html" />
+    <Content Include="Assets\css\assets\js\assets\img\logo.html" />
+    <Content Include="Assets\css\assets\js\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\js\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\assets\js\assets\js\main.html" />
+    <Content Include="Assets\css\assets\js\assets\js\popper.min.html" />
+    <Content Include="Assets\css\assets\js\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\assets\js\assets\js\wow.min.html" />
+    <Content Include="Assets\css\assets\js\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\assets\js\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\js\html-template\departments.html" />
+    <Content Include="Assets\css\assets\js\html-template\event.html" />
+    <Content Include="Assets\css\assets\js\html-template\expenses.html" />
+    <Content Include="Assets\css\assets\js\html-template\fees-collections.html" />
+    <Content Include="Assets\css\assets\js\html-template\holiday.html" />
+    <Content Include="Assets\css\assets\js\html-template\index.html" />
+    <Content Include="Assets\css\assets\js\html-template\library.html" />
+    <Content Include="Assets\css\assets\js\html-template\salary.html" />
+    <Content Include="Assets\css\assets\js\html-template\subjects.html" />
+    <Content Include="Assets\css\assets\js\html-template\teacher-details.html" />
+    <Content Include="Assets\css\assets\js\html-template\teachers.html" />
+    <Content Include="Assets\css\assets\js\index.html" />
+    <Content Include="Assets\css\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\assets\js\main.html" />
+    <Content Include="Assets\css\assets\js\popper.min.html" />
+    <Content Include="Assets\css\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\assets\js\wow.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\css\animate.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\css\style.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\favicon.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-1.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-10.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-2.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-3.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-4.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-5.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-6.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-7.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-8.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image-9.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\image.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\img\logo.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\main.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\popper.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\js\wow.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\departments.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\event.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\expenses.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\fees-collections.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\holiday.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\index.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\library.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\salary.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\subjects.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\teacher-details.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\html-template\teachers.html" />
+    <Content Include="Assets\css\assets\plugins\fontawesome\css\index.html" />
+    <Content Include="Assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\html-template\assets\css\animate.html" />
+    <Content Include="Assets\css\html-template\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\css\html-template\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\html-template\assets\css\style.html" />
+    <Content Include="Assets\css\html-template\assets\img\favicon.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-1.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-10.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-2.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-3.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-4.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-5.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-6.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-7.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-8.html" />
+    <Content Include="Assets\css\html-template\assets\img\image-9.html" />
+    <Content Include="Assets\css\html-template\assets\img\image.html" />
+    <Content Include="Assets\css\html-template\assets\img\logo.html" />
+    <Content Include="Assets\css\html-template\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\css\html-template\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\css\html-template\assets\js\main.html" />
+    <Content Include="Assets\css\html-template\assets\js\popper.min.html" />
+    <Content Include="Assets\css\html-template\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\css\html-template\assets\js\wow.min.html" />
+    <Content Include="Assets\css\html-template\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\css\html-template\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\css\html-template\departments.html" />
+    <Content Include="Assets\css\html-template\event.html" />
+    <Content Include="Assets\css\html-template\expenses.html" />
+    <Content Include="Assets\css\html-template\fees-collections.html" />
+    <Content Include="Assets\css\html-template\holiday.html" />
+    <Content Include="Assets\css\html-template\html-template\departments.html" />
+    <Content Include="Assets\css\html-template\html-template\event.html" />
+    <Content Include="Assets\css\html-template\html-template\expenses.html" />
+    <Content Include="Assets\css\html-template\html-template\fees-collections.html" />
+    <Content Include="Assets\css\html-template\html-template\holiday.html" />
+    <Content Include="Assets\css\html-template\html-template\index.html" />
+    <Content Include="Assets\css\html-template\html-template\library.html" />
+    <Content Include="Assets\css\html-template\html-template\salary.html" />
+    <Content Include="Assets\css\html-template\html-template\subjects.html" />
+    <Content Include="Assets\css\html-template\html-template\teacher-details.html" />
+    <Content Include="Assets\css\html-template\html-template\teachers.html" />
+    <Content Include="Assets\css\html-template\index.html" />
+    <Content Include="Assets\css\html-template\library.html" />
+    <Content Include="Assets\css\html-template\salary.html" />
+    <Content Include="Assets\css\html-template\subjects.html" />
+    <Content Include="Assets\css\html-template\teacher-details.html" />
+    <Content Include="Assets\css\html-template\teachers.html" />
+    <Content Include="Assets\css\index.html" />
+    <Content Include="Assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\img\assets\css\animate.html" />
+    <Content Include="Assets\img\assets\css\assets\css\animate.html" />
+    <Content Include="Assets\img\assets\css\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\css\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\assets\css\assets\css\style.html" />
+    <Content Include="Assets\img\assets\css\assets\img\favicon.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-1.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-10.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-2.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-3.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-4.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-5.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-6.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-7.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-8.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image-9.html" />
+    <Content Include="Assets\img\assets\css\assets\img\image.html" />
+    <Content Include="Assets\img\assets\css\assets\img\logo.html" />
+    <Content Include="Assets\img\assets\css\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\css\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\assets\css\assets\js\main.html" />
+    <Content Include="Assets\img\assets\css\assets\js\popper.min.html" />
+    <Content Include="Assets\img\assets\css\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\assets\css\assets\js\wow.min.html" />
+    <Content Include="Assets\img\assets\css\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\assets\css\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\css\html-template\departments.html" />
+    <Content Include="Assets\img\assets\css\html-template\event.html" />
+    <Content Include="Assets\img\assets\css\html-template\expenses.html" />
+    <Content Include="Assets\img\assets\css\html-template\fees-collections.html" />
+    <Content Include="Assets\img\assets\css\html-template\holiday.html" />
+    <Content Include="Assets\img\assets\css\html-template\index.html" />
+    <Content Include="Assets\img\assets\css\html-template\library.html" />
+    <Content Include="Assets\img\assets\css\html-template\salary.html" />
+    <Content Include="Assets\img\assets\css\html-template\subjects.html" />
+    <Content Include="Assets\img\assets\css\html-template\teacher-details.html" />
+    <Content Include="Assets\img\assets\css\html-template\teachers.html" />
+    <Content Include="Assets\img\assets\css\index.html" />
+    <Content Include="Assets\img\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\assets\css\style.html" />
+    <Content Include="Assets\img\assets\img\assets\css\animate.html" />
+    <Content Include="Assets\img\assets\img\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\img\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\assets\img\assets\css\style.html" />
+    <Content Include="Assets\img\assets\img\assets\img\favicon.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-1.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-10.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-2.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-3.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-4.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-5.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-6.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-7.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-8.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image-9.html" />
+    <Content Include="Assets\img\assets\img\assets\img\image.html" />
+    <Content Include="Assets\img\assets\img\assets\img\logo.html" />
+    <Content Include="Assets\img\assets\img\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\img\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\assets\img\assets\js\main.html" />
+    <Content Include="Assets\img\assets\img\assets\js\popper.min.html" />
+    <Content Include="Assets\img\assets\img\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\assets\img\assets\js\wow.min.html" />
+    <Content Include="Assets\img\assets\img\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\assets\img\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\assets\img\favicon.html" />
+    <Content Include="Assets\img\assets\img\html-template\departments.html" />
+    <Content Include="Assets\img\assets\img\html-template\event.html" />
+    <Content Include="Assets\img\assets\img\html-template\expenses.html" />
+    <Content Include="Assets\img\assets\img\html-template\fees-collections.html" />
+    <Content Include="Assets\img\assets\img\html-template\holiday.html" />
+    <Content Include="Assets\img\assets\img\html-template\index.html" />
+    <Content Include="Assets\img\assets\img\html-template\library.html" />
+    <Content Include="Assets\img\assets\img\html-template\salary.html" />
+    <Content Include="Assets\img\assets\img\html-template\subjects.html" />
+    <Content Include="Assets\img\assets\img\html-template\teacher-details.html" />
+    <Content Include="Assets\img\assets\img\html-template\teachers.html" />
+    <Content Include="Assets\img\assets\img\image-1.html" />
+    <Content Include="Assets\img\assets\img\image-10.html" />
+    <Content Include="Assets\img\assets\img\image-2.html" />
+    <Content Include="Assets\img\assets\img\image-3.html" />
+    <Content Include="Assets\img\assets\img\image-4.html" />
+    <Content Include="Assets\img\assets\img\image-5.html" />
+    <Content Include="Assets\img\assets\img\image-6.html" />
+    <Content Include="Assets\img\assets\img\image-7.html" />
+    <Content Include="Assets\img\assets\img\image-8.html" />
+    <Content Include="Assets\img\assets\img\image-9.html" />
+    <Content Include="Assets\img\assets\img\image.html" />
+    <Content Include="Assets\img\assets\img\index.html" />
+    <Content Include="Assets\img\assets\img\logo.html" />
+    <Content Include="Assets\img\assets\js\assets\css\animate.html" />
+    <Content Include="Assets\img\assets\js\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\js\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\assets\js\assets\css\style.html" />
+    <Content Include="Assets\img\assets\js\assets\img\favicon.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-1.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-10.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-2.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-3.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-4.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-5.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-6.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-7.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-8.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image-9.html" />
+    <Content Include="Assets\img\assets\js\assets\img\image.html" />
+    <Content Include="Assets\img\assets\js\assets\img\logo.html" />
+    <Content Include="Assets\img\assets\js\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\js\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\assets\js\assets\js\main.html" />
+    <Content Include="Assets\img\assets\js\assets\js\popper.min.html" />
+    <Content Include="Assets\img\assets\js\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\assets\js\assets\js\wow.min.html" />
+    <Content Include="Assets\img\assets\js\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\assets\js\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\js\html-template\departments.html" />
+    <Content Include="Assets\img\assets\js\html-template\event.html" />
+    <Content Include="Assets\img\assets\js\html-template\expenses.html" />
+    <Content Include="Assets\img\assets\js\html-template\fees-collections.html" />
+    <Content Include="Assets\img\assets\js\html-template\holiday.html" />
+    <Content Include="Assets\img\assets\js\html-template\index.html" />
+    <Content Include="Assets\img\assets\js\html-template\library.html" />
+    <Content Include="Assets\img\assets\js\html-template\salary.html" />
+    <Content Include="Assets\img\assets\js\html-template\subjects.html" />
+    <Content Include="Assets\img\assets\js\html-template\teacher-details.html" />
+    <Content Include="Assets\img\assets\js\html-template\teachers.html" />
+    <Content Include="Assets\img\assets\js\index.html" />
+    <Content Include="Assets\img\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\assets\js\main.html" />
+    <Content Include="Assets\img\assets\js\popper.min.html" />
+    <Content Include="Assets\img\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\assets\js\wow.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\css\animate.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\css\style.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\favicon.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-1.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-10.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-2.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-3.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-4.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-5.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-6.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-7.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-8.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image-9.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\image.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\img\logo.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\main.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\popper.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\js\wow.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\departments.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\event.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\expenses.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\fees-collections.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\holiday.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\index.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\library.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\salary.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\subjects.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\teacher-details.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\teachers.html" />
+    <Content Include="Assets\img\assets\plugins\fontawesome\css\index.html" />
+    <Content Include="Assets\img\favicon.png" />
+    <Content Include="Assets\img\html-template\assets\css\animate.html" />
+    <Content Include="Assets\img\html-template\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\img\html-template\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\img\html-template\assets\css\style.html" />
+    <Content Include="Assets\img\html-template\assets\img\favicon.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-1.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-10.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-2.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-3.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-4.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-5.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-6.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-7.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-8.html" />
+    <Content Include="Assets\img\html-template\assets\img\image-9.html" />
+    <Content Include="Assets\img\html-template\assets\img\image.html" />
+    <Content Include="Assets\img\html-template\assets\img\logo.html" />
+    <Content Include="Assets\img\html-template\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\img\html-template\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\img\html-template\assets\js\main.html" />
+    <Content Include="Assets\img\html-template\assets\js\popper.min.html" />
+    <Content Include="Assets\img\html-template\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\img\html-template\assets\js\wow.min.html" />
+    <Content Include="Assets\img\html-template\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\img\html-template\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\img\html-template\departments.html" />
+    <Content Include="Assets\img\html-template\event.html" />
+    <Content Include="Assets\img\html-template\expenses.html" />
+    <Content Include="Assets\img\html-template\fees-collections.html" />
+    <Content Include="Assets\img\html-template\holiday.html" />
+    <Content Include="Assets\img\html-template\html-template\departments.html" />
+    <Content Include="Assets\img\html-template\html-template\event.html" />
+    <Content Include="Assets\img\html-template\html-template\expenses.html" />
+    <Content Include="Assets\img\html-template\html-template\fees-collections.html" />
+    <Content Include="Assets\img\html-template\html-template\holiday.html" />
+    <Content Include="Assets\img\html-template\html-template\index.html" />
+    <Content Include="Assets\img\html-template\html-template\library.html" />
+    <Content Include="Assets\img\html-template\html-template\salary.html" />
+    <Content Include="Assets\img\html-template\html-template\subjects.html" />
+    <Content Include="Assets\img\html-template\html-template\teacher-details.html" />
+    <Content Include="Assets\img\html-template\html-template\teachers.html" />
+    <Content Include="Assets\img\html-template\index.html" />
+    <Content Include="Assets\img\html-template\library.html" />
+    <Content Include="Assets\img\html-template\salary.html" />
+    <Content Include="Assets\img\html-template\subjects.html" />
+    <Content Include="Assets\img\html-template\teacher-details.html" />
+    <Content Include="Assets\img\html-template\teachers.html" />
+    <Content Include="Assets\img\image-1.html" />
+    <Content Include="Assets\img\image-10.html" />
+    <Content Include="Assets\img\image-2.html" />
+    <Content Include="Assets\img\image-3.html" />
+    <Content Include="Assets\img\image-4.html" />
+    <Content Include="Assets\img\image-5.html" />
+    <Content Include="Assets\img\image-6.html" />
+    <Content Include="Assets\img\image-7.html" />
+    <Content Include="Assets\img\image-8.html" />
+    <Content Include="Assets\img\image-9.html" />
+    <Content Include="Assets\img\image.html" />
+    <Content Include="Assets\img\img-01.jpg" />
+    <Content Include="Assets\img\index.html" />
+    <Content Include="Assets\img\login.jpg" />
+    <Content Include="Assets\img\logo-small.png" />
+    <Content Include="Assets\img\logo-white.png" />
+    <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\profiles\avatar-01.jpg" />
+    <Content Include="Assets\img\profiles\avatar-02.jpg" />
+    <Content Include="Assets\img\profiles\avatar-03.jpg" />
+    <Content Include="Assets\img\profiles\avatar-04.jpg" />
+    <Content Include="Assets\img\profiles\avatar-05.jpg" />
+    <Content Include="Assets\img\profiles\avatar-06.jpg" />
+    <Content Include="Assets\img\profiles\avatar-07.jpg" />
+    <Content Include="Assets\img\profiles\avatar-08.jpg" />
+    <Content Include="Assets\img\profiles\avatar-09.jpg" />
+    <Content Include="Assets\img\profiles\avatar-10.jpg" />
+    <Content Include="Assets\img\profiles\avatar-11.jpg" />
+    <Content Include="Assets\img\profiles\avatar-13.jpg" />
+    <Content Include="Assets\img\profiles\avatar-17.jpg" />
+    <Content Include="Assets\img\user.jpg" />
+    <Content Include="Assets\js\assets\css\animate.html" />
+    <Content Include="Assets\js\assets\css\bootstrap.min.html" />
+    <Content Include="Assets\js\assets\css\materialdesignicons.min.html" />
+    <Content Include="Assets\js\assets\css\style.html" />
+    <Content Include="Assets\js\assets\img\favicon.html" />
+    <Content Include="Assets\js\assets\img\image-1.html" />
+    <Content Include="Assets\js\assets\img\image-10.html" />
+    <Content Include="Assets\js\assets\img\image-2.html" />
+    <Content Include="Assets\js\assets\img\image-3.html" />
+    <Content Include="Assets\js\assets\img\image-4.html" />
+    <Content Include="Assets\js\assets\img\image-5.html" />
+    <Content Include="Assets\js\assets\img\image-6.html" />
+    <Content Include="Assets\js\assets\img\image-7.html" />
+    <Content Include="Assets\js\assets\img\image-8.html" />
+    <Content Include="Assets\js\assets\img\image-9.html" />
+    <Content Include="Assets\js\assets\img\image.html" />
+    <Content Include="Assets\js\assets\img\logo.html" />
+    <Content Include="Assets\js\assets\js\bootstrap.min.html" />
+    <Content Include="Assets\js\assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\js\assets\js\main.html" />
+    <Content Include="Assets\js\assets\js\popper.min.html" />
+    <Content Include="Assets\js\assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\js\assets\js\wow.min.html" />
+    <Content Include="Assets\js\assets\plugins\fontawesome\css\all.min.html" />
+    <Content Include="Assets\js\assets\plugins\fontawesome\css\fontawesome.min.html" />
+    <Content Include="Assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Assets\js\bootstrap.min.html" />
+    <Content Include="Assets\js\calander.js" />
+    <Content Include="Assets\js\circle-progress.min.js" />
+    <Content Include="Assets\js\form-validation.js" />
+    <Content Include="Assets\js\html-template\departments.html" />
+    <Content Include="Assets\js\html-template\event.html" />
+    <Content Include="Assets\js\html-template\expenses.html" />
+    <Content Include="Assets\js\html-template\fees-collections.html" />
+    <Content Include="Assets\js\html-template\holiday.html" />
+    <Content Include="Assets\js\html-template\index.html" />
+    <Content Include="Assets\js\html-template\library.html" />
+    <Content Include="Assets\js\html-template\salary.html" />
+    <Content Include="Assets\js\html-template\subjects.html" />
+    <Content Include="Assets\js\html-template\teacher-details.html" />
+    <Content Include="Assets\js\html-template\teachers.html" />
+    <Content Include="Assets\js\index.html" />
+    <Content Include="Assets\js\jquery-1.12.4.min.html" />
+    <Content Include="Assets\js\jquery-3.6.0.min.js" />
+    <Content Include="Assets\js\jquery-ui.min.js" />
+    <Content Include="Assets\js\jquery.maskedinput.min.js" />
+    <Content Include="Assets\js\main.html" />
+    <Content Include="Assets\js\mask.js" />
+    <Content Include="Assets\js\moment.min.js" />
+    <Content Include="Assets\js\popper.min.js" />
+    <Content Include="Assets\js\script.js" />
+    <Content Include="Assets\js\smooth-scroll.min.html" />
+    <Content Include="Assets\js\wow.min.html" />
+    <Content Include="Assets\plugins\apexchart\apexcharts.min.js" />
+    <Content Include="Assets\plugins\apexchart\chart-data.js" />
+    <Content Include="Assets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\plugins\datatables\datatables.min.css" />
+    <Content Include="Assets\plugins\datatables\datatables.min.js" />
+    <Content Include="Assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Assets\plugins\fontawesome\css\all.min.css" />
+    <Content Include="Assets\plugins\fontawesome\css\fontawesome.min.css" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400.html" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400.html" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900.html" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Assets\plugins\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Assets\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Assets\plugins\fullcalendar\jquery.fullcalendar.js" />
+    <Content Include="Assets\plugins\select2\css\select2.min.css" />
+    <Content Include="Assets\plugins\select2\js\select2.min.js" />
+    <Content Include="Assets\plugins\simple-calendar\jquery.simple-calendar.js" />
+    <Content Include="Assets\plugins\simple-calendar\simple-calendar.css" />
+    <Content Include="Assets\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\plugins\summernote\dist\summernote-bs4.css" />
+    <Content Include="Assets\plugins\summernote\dist\summernote-bs4.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-brands-400d41d.eot" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Assets\plugins\fontawesome\webfonts\fa-solid-900d41d.eot" />
+    <Content Include="Assets\plugins\summernote\dist\font\summernotec360.eot" />
+    <Content Include="Assets\plugins\summernote\dist\font\summernotec360.ttf" />
+    <Content Include="Assets\plugins\summernote\dist\font\summernotec360.woff" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60359</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44358/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
