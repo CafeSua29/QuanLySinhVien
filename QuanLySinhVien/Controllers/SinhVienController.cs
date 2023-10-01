@@ -13,5 +13,10 @@ namespace QuanLySinhVien.Controllers
         {
             return View();
         }
+
+        public ActionResult ChiTietSinhVien()
+        {
+            return View();
+        }
     }
 }
