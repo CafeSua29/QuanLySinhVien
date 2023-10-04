@@ -1,13 +1,13 @@
 ﻿@model QuanLySinhVien.Models.SinhVien
 
 @{
-    ViewBag.Title = "ThemSinhVien";
+    ViewBag.Title = "SuaSinhVien";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>ThemSinhVien</h2>
+<h2>SuaSinhVien</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -15,13 +15,7 @@
         <h4>SinhVien</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaSV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaSV, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaSV, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.MaSV)
 
         <div class="form-group">
             @Html.LabelFor(model => model.HoSV, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -74,14 +68,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaLop, "MaLop", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @{ 
+                @{
                     QuanLySinhVien.Models.QuanLySinhVienEntities db = new QuanLySinhVien.Models.QuanLySinhVienEntities();
                     var lops = db.Lops.ToList();
                     <select name="maLop">
-                        @foreach(var lop in lops)
-                {
-                    <option value="@lop.MaLop">@lop.TenLop</option>
-                }
+                        @foreach (var lop in lops)
+                        {
+                            <option value="@lop.MaLop" @Html.Raw(lop.MaLop == Model.MaLop ? "selected":"")>@lop.TenLop</option>
+                        }
                     </select>
                 }
                 @Html.ValidationMessageFor(model => model.MaLop, "", new { @class = "text-danger" })
@@ -90,7 +84,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

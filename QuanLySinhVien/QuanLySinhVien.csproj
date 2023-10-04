@@ -654,15 +654,15 @@
     <Content Include="Assets\plugins\summernote\dist\summernote-bs4.css" />
     <Content Include="Assets\plugins\summernote\dist\summernote-bs4.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\QuanLySinhVien.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
+      <LastGenOutput>QuanLySinhVien.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\QuanLySinhVien.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
+      <LastGenOutput>QuanLySinhVien.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -674,39 +674,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KetQua.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Khoa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lop.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LopBUS.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MonHoc.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SinhVienBUS.cs" />
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -727,18 +725,19 @@
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.eot" />
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.ttf" />
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.woff" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\QuanLySinhVien.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanLySinhVien.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\QuanLySinhVien.edmx.diagram">
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
-    <Content Include="Views\SinhVien\ChiTietSinhVien.cshtml" />
     <Content Include="Views\SinhVien\DanhSachSinhVien.cshtml" />
+    <Content Include="Views\SinhVien\ChiTietSinhVien.cshtml" />
     <Content Include="Views\SinhVien\ThemSinhVien.cshtml" />
+    <Content Include="Views\SinhVien\SuaSinhVien.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -9,49 +9,159 @@ namespace QuanLySinhVien.Controllers
 {
     public class SinhVienController : Controller
     {
-        QuanLySinhVienEntities db = new QuanLySinhVienEntities();
         // GET: SinhVien
         public ActionResult DanhSachSinhVien()
         {
-            return View();
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            List<SinhVien> listSV = db.SinhViens.ToList();
+
+            return View(listSV);
         }
 
-        public ActionResult ChiTietSinhVien()
+        public ActionResult ChiTietSinhVien(String masv)
         {
-            return View();
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            SinhVien sv = db.SinhViens.Find(masv);
+
+            return View(sv);
         }
+
         public ActionResult ThemSinhVien()
         {
-            ViewBag.MaLop = new SelectList(LopBUS.DanhSachLop(),"MaLop", "TenLop");
-            return View();
+            return View(new SinhVien());
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ThemSinhVien(SinhVien model)
+        public ActionResult ThemSinhVien(SinhVien sv)
         {
-            if(ModelState.IsValid)
+            if(string.IsNullOrEmpty(sv.MaSV))
             {
-                var check = db.SinhViens.FirstOrDefault(x => x.MaSV == model.MaSV);
-                if (check == null)
-                {
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.SinhViens.Add(model);
-                    db.SaveChanges();
-                    return RedirectToAction("DanhSachSinhVien");
-                }
-                else
-                {
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLop(), "MaLop", "TenLop");
-                    TempData["Error"] = "Mã sinh viên đã tồn tại";
-                    return View(model);
-                }
+                ModelState.AddModelError("", "Ma sinh vien khong duoc de trong");
+                return View(sv);
             }
-            else
+
+            if (string.IsNullOrEmpty(sv.HoSV))
             {
-                ViewBag.MaLop = new SelectList(LopBUS.DanhSachLop(), "MaLop", "TenLop");
-                return View(model);
+                ModelState.AddModelError("", "Ho sinh vien khong duoc de trong");
+                return View(sv);
             }
+
+            if (string.IsNullOrEmpty(sv.TenSV))
+            {
+                ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.GioiTinh))
+            {
+                ModelState.AddModelError("", "Gioi tinh khong duoc de trong");
+                return View(sv);
+            }
+
+            if (sv.NgaySinh == DateTime.MinValue)
+            {
+                ModelState.AddModelError("", "Ngay sinh chua duoc chon");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.QueQuan))
+            {
+                ModelState.AddModelError("", "Que quan khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.SoDienThoai))
+            {
+                ModelState.AddModelError("", "So dien thoai sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            db.SinhViens.Add(sv);
+            db.SaveChanges();
+
+            return RedirectToAction("DanhSachSinhVien");
+        }
+
+        public ActionResult SuaSinhVien(string masv)
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            SinhVien sv = db.SinhViens.Find(masv);
+
+            return View(sv);
+        }
+
+        [HttpPost]
+        public ActionResult SuaSinhVien(SinhVien sv)
+        {
+            if (string.IsNullOrEmpty(sv.MaSV))
+            {
+                ModelState.AddModelError("", "Ma sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.HoSV))
+            {
+                ModelState.AddModelError("", "Ho sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.TenSV))
+            {
+                ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.GioiTinh))
+            {
+                ModelState.AddModelError("", "Gioi tinh khong duoc de trong");
+                return View(sv);
+            }
+
+            if (sv.NgaySinh == DateTime.MinValue)
+            {
+                ModelState.AddModelError("", "Ngay sinh chua duoc chon");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.QueQuan))
+            {
+                ModelState.AddModelError("", "Que quan khong duoc de trong");
+                return View(sv);
+            }
+
+            if (string.IsNullOrEmpty(sv.SoDienThoai))
+            {
+                ModelState.AddModelError("", "So dien thoai sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            var suasv = db.SinhViens.Find(sv.MaSV);
+
+            suasv.MaSV = sv.MaSV;
+            suasv.HoSV = sv.HoSV;
+            suasv.TenSV = sv.TenSV;
+            suasv.GioiTinh = sv.GioiTinh;
+            suasv.NgaySinh = sv.NgaySinh;
+            suasv.QueQuan = sv.QueQuan;
+            suasv.SoDienThoai = sv.SoDienThoai;
+            suasv.MaLop = sv.MaLop;
+
+            db.SaveChanges();
+
+            return RedirectToAction("DanhSachSinhVien");
+        }
+
+        public ActionResult XoaSinhVien(string masv)
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            SinhVien sv = db.SinhViens.Find(masv);
+
+            db.SinhViens.Remove(sv);
+            db.SaveChanges();
+
+            return RedirectToAction("DanhSachSinhVien");
         }
     }
 }
