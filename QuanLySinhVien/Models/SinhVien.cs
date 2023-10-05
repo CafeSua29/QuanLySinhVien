@@ -24,7 +24,7 @@ namespace QuanLySinhVien.Models
         public string HoSV { get; set; }
         public string TenSV { get; set; }
         public string GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
+        public System.DateTime NgaySinh { get; set; }
         public string QueQuan { get; set; }
         public string SoDienThoai { get; set; }
         public string MaLop { get; set; }

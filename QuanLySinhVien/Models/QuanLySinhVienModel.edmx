@@ -19,14 +19,14 @@
             <PropertyRef Name="MaKhoa" />
           </Key>
           <Property Name="MaKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TenKhoa" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Lop">
           <Key>
             <PropertyRef Name="MaLop" />
           </Key>
           <Property Name="MaLop" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TenLop" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MaKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="MonHoc">
@@ -34,22 +34,22 @@
             <PropertyRef Name="MaMH" />
           </Key>
           <Property Name="MaMH" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TenMH" Type="nvarchar" MaxLength="50" />
-          <Property Name="SoTin" Type="int" />
-          <Property Name="BaoLuu" Type="bit" />
+          <Property Name="TenMH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoTin" Type="int" Nullable="false" />
+          <Property Name="BaoLuu" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
             <PropertyRef Name="MaSV" />
           </Key>
           <Property Name="MaSV" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="HoSV" Type="nvarchar" MaxLength="50" />
-          <Property Name="TenSV" Type="nvarchar" MaxLength="50" />
-          <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
-          <Property Name="NgaySinh" Type="date" />
-          <Property Name="QueQuan" Type="nvarchar" MaxLength="50" />
-          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
-          <Property Name="MaLop" Type="nvarchar" MaxLength="50" />
+          <Property Name="HoSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="QueQuan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaLop" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -104,7 +104,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinhVien_Lop">
-          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="Lop" Type="Self.Lop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lop">
@@ -160,7 +162,7 @@
             <PropertyRef Name="MaKhoa" />
           </Key>
           <Property Name="MaKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TenKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Lops" Relationship="Self.FK_Lop_Khoa" FromRole="Khoa" ToRole="Lop" />
         </EntityType>
         <EntityType Name="Lop">
@@ -168,7 +170,7 @@
             <PropertyRef Name="MaLop" />
           </Key>
           <Property Name="MaLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Khoa" Relationship="Self.FK_Lop_Khoa" FromRole="Lop" ToRole="Khoa" />
           <NavigationProperty Name="SinhViens" Relationship="Self.FK_SinhVien_Lop" FromRole="Lop" ToRole="SinhVien" />
@@ -178,9 +180,9 @@
             <PropertyRef Name="MaMH" />
           </Key>
           <Property Name="MaMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SoTin" Type="Int32" />
-          <Property Name="BaoLuu" Type="Boolean" />
+          <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoTin" Type="Int32" Nullable="false" />
+          <Property Name="BaoLuu" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_MonHoc" FromRole="MonHoc" ToRole="KetQua" />
         </EntityType>
         <EntityType Name="SinhVien">
@@ -188,13 +190,13 @@
             <PropertyRef Name="MaSV" />
           </Key>
           <Property Name="MaSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HoSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="QueQuan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="QueQuan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_SinhVien" FromRole="SinhVien" ToRole="KetQua" />
           <NavigationProperty Name="Lop" Relationship="Self.FK_SinhVien_Lop" FromRole="SinhVien" ToRole="Lop" />
         </EntityType>
@@ -251,7 +253,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinhVien_Lop">
-          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="Lop" Type="Self.Lop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lop">

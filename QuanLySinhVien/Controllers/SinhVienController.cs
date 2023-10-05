@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLySinhVien.Models;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -46,9 +48,25 @@ namespace QuanLySinhVien.Controllers
                 return View(sv);
             }
 
+            bool chekho = Regex.IsMatch(sv.HoSV, @"^[a-zA-Z]+$");
+
+            if (!chekho)
+            {
+                ModelState.AddModelError("", "Ho cua sinh vien khong hop le");
+                return View(sv);
+            }
+
             if (string.IsNullOrEmpty(sv.TenSV))
             {
                 ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            bool chekten = Regex.IsMatch(sv.TenSV, @"^[a-zA-Z]+$");
+
+            if (!chekten)
+            {
+                ModelState.AddModelError("", "Ten cua sinh vien khong hop le");
                 return View(sv);
             }
 
@@ -64,9 +82,25 @@ namespace QuanLySinhVien.Controllers
                 return View(sv);
             }
 
+            int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
+
+            if (tuoi < 18)
+            {
+                ModelState.AddModelError("", "Ngay thang nam sinh khong hop le");
+                return View(sv);
+            }
+
             if (string.IsNullOrEmpty(sv.QueQuan))
             {
                 ModelState.AddModelError("", "Que quan khong duoc de trong");
+                return View(sv);
+            }
+
+            bool chekque = Regex.IsMatch(sv.QueQuan, @"^[a-zA-Z]+$");
+
+            if (!chekque)
+            {
+                ModelState.AddModelError("", "Que quan cua sinh vien khong hop le");
                 return View(sv);
             }
 
@@ -76,7 +110,26 @@ namespace QuanLySinhVien.Controllers
                 return View(sv);
             }
 
+            bool cheksdt = Regex.IsMatch(sv.SoDienThoai, @"^(\+84|0)[0-9]{7,10}$");
+
+            if (!cheksdt)
+            {
+                ModelState.AddModelError("", "So dien thoai khong hop le");
+                return View(sv);
+            }
+
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            List<SinhVien> listSV = db.SinhViens.ToList();
+
+            foreach(var svien in listSV)
+            {
+                if (svien.MaSV.Equals(sv.MaSV))
+                {
+                    ModelState.AddModelError("", "Ma sinh vien khong duoc trung");
+                    return View(sv);
+                }
+            }
+
             db.SinhViens.Add(sv);
             db.SaveChanges();
 
@@ -106,9 +159,25 @@ namespace QuanLySinhVien.Controllers
                 return View(sv);
             }
 
+            bool chekho = Regex.IsMatch(sv.HoSV, @"^[a-zA-Z]+$");
+
+            if (!chekho)
+            {
+                ModelState.AddModelError("", "Ho cua sinh vien khong hop le");
+                return View(sv);
+            }
+
             if (string.IsNullOrEmpty(sv.TenSV))
             {
                 ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            bool chekten = Regex.IsMatch(sv.TenSV, @"^[a-zA-Z]+$");
+
+            if (!chekten)
+            {
+                ModelState.AddModelError("", "Ten cua sinh vien khong hop le");
                 return View(sv);
             }
 
@@ -124,15 +193,39 @@ namespace QuanLySinhVien.Controllers
                 return View(sv);
             }
 
+            int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
+
+            if (tuoi < 18)
+            {
+                ModelState.AddModelError("", "Ngay thang nam sinh khong hop le");
+                return View(sv);
+            }
+
             if (string.IsNullOrEmpty(sv.QueQuan))
             {
                 ModelState.AddModelError("", "Que quan khong duoc de trong");
                 return View(sv);
             }
 
+            bool chekque = Regex.IsMatch(sv.QueQuan, @"^[a-zA-Z]+$");
+
+            if (!chekque)
+            {
+                ModelState.AddModelError("", "Que quan cua sinh vien khong hop le");
+                return View(sv);
+            }
+
             if (string.IsNullOrEmpty(sv.SoDienThoai))
             {
                 ModelState.AddModelError("", "So dien thoai sinh vien khong duoc de trong");
+                return View(sv);
+            }
+
+            bool cheksdt = Regex.IsMatch(sv.SoDienThoai, @"^(\+84|0)[0-9]{7,10}$");
+
+            if (!cheksdt)
+            {
+                ModelState.AddModelError("", "So dien thoai khong hop le");
                 return View(sv);
             }
 
