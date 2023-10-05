@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using QuanLySinhVien.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using OfficeOpenXml;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -255,6 +256,45 @@ namespace QuanLySinhVien.Controllers
             db.SaveChanges();
 
             return RedirectToAction("DanhSachSinhVien");
+        }
+
+        public void XuatFileExcel()
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            List<SinhVien> listSV = db.SinhViens.ToList();
+
+            ExcelPackage ep = new ExcelPackage();
+            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
+
+            Sheet.Cells["A1"].Value = "Ma sinh vien";
+            Sheet.Cells["B1"].Value = "Ho sinh vien";
+            Sheet.Cells["C1"].Value = "Ten sinh vien";
+            Sheet.Cells["D1"].Value = "Gioi tinh";
+            Sheet.Cells["E1"].Value = "Ngay sinh";
+            Sheet.Cells["F1"].Value = "Que quan";
+            Sheet.Cells["G1"].Value = "So dien thoai";
+            Sheet.Cells["H1"].Value = "Lop quan ly";
+
+            int row = 2;// dòng bắt đầu ghi dữ liệu
+            foreach (var sv in listSV)
+            {
+                Sheet.Cells[string.Format("A{0}", row)].Value = sv.MaSV;
+                Sheet.Cells[string.Format("B{0}", row)].Value = sv.HoSV;
+                Sheet.Cells[string.Format("C{0}", row)].Value = sv.TenSV;
+                Sheet.Cells[string.Format("D{0}", row)].Value = sv.GioiTinh;
+                Sheet.Cells[string.Format("E{0}", row)].Value = sv.NgaySinh.ToString("dd-MM-yyyy");
+                Sheet.Cells[string.Format("F{0}", row)].Value = sv.QueQuan;
+                Sheet.Cells[string.Format("G{0}", row)].Value = sv.SoDienThoai;
+                Sheet.Cells[string.Format("H{0}", row)].Value = sv.MaLop;
+                row++;
+            }
+
+            Sheet.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment; filename=" + "Report.xlsx");
+            Response.BinaryWrite(ep.GetAsByteArray());
+            Response.End();
         }
     }
 }
