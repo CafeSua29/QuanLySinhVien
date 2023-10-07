@@ -20,37 +20,44 @@ namespace QuanLySinhVien.Models
         {
             this.KetQuas = new HashSet<KetQua>();
         }
+
         [Display(Name = "Mã sinh viên")]
-        [Required(ErrorMessage = "Mã sinh viên không được để trống")]    
-        
+        [Required(ErrorMessage = "Mã sinh viên không được để trống")]           
         public string MaSV { get; set; }
-        [Required(ErrorMessage = "Họ sinh viên không được để trống")]
+
+        [Required(ErrorMessage = "Họ của sinh viên không được để trống")]
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Họ không hợp lệ")]
         [Display(Name = "Họ sinh viên")]
         public string HoSV { get; set; }
+
         [Required(ErrorMessage = "Tên sinh viên không được để trống")]
         [Display(Name = "Tên sinh viên")]
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Tên không hợp lệ")]
         public string TenSV { get; set; }
+
         [Display(Name = "Giới tính")]
         public string GioiTinh { get; set; }
+
         [Display(Name = "Ngày sinh")]
-        [Required(ErrorMessage = "Ngày sinh không được để trống")]
+        [Required(ErrorMessage = "Ngày sinh chưa được chọn")]
         public System.DateTime NgaySinh { get; set; }
+
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Quê quán không hợp lệ")]
         [Display(Name = "Quê quán")]
-        [Required(ErrorMessage = "Quê quán không được để trống")]
-        
+        [Required(ErrorMessage = "Quê quán không được để trống")]       
         public string QueQuan { get; set; }
+
         [Display(Name = "Số điện thoại")]
         [Required(ErrorMessage = "Số điện thoại không được để trống")]
         [RegularExpression(@"^(\+84|0)[0-9]{7,10}$", ErrorMessage = "Số điện thoại không hợp lệ")]
         public string SoDienThoai { get; set; }
+
         [Display(Name = "Lớp")]
         public string MaLop { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
+
         public virtual Lop Lop { get; set; }
     }
 }

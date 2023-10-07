@@ -9,13 +9,18 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Students</h3>
+                <div class="top-nav-search">
+                    <form>
+                        <input type="text" class="form-control" placeholder="Nhập thông tin tìm kiếm">
+                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">Students</li>
+                    <li class="breadcrumb-item active"></li>
                 </ul>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a href="~/SinhVien/XuatFileExcel" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                <a href="~/SinhVien/XuatFileExcel" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Tải danh sách</a>
                 <a href="~/SinhVien/ThemSinhVien" class="btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
         </div>
@@ -28,15 +33,15 @@
                         <table class="table table-hover table-center mb-0 datatable">
                             <thead>
                                 <tr>
-                                    <th>Ma Sinh Vien</th>
-                                    <th>Ho Sinh Vien</th>
-                                    <th>Ten Sinh Vien</th>
-                                    <th>GioiTinh</th>
-                                    <th>Ngay Sinh</th>
-                                    <th>Que Quan</th>
-                                    <th>So Dien Thoai</th>
-                                    <th>Ma Lop</th>
-                                    <th class="text-right">Hanh Dong</th>
+                                    <th>Mã sinh viên</th>
+                                    <th>Họ sinh viên</th>
+                                    <th>Tên sinh viên</th>
+                                    <th>Giới tính</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Quê quán</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Lớp</th>
+                                    <th class="text-right">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +70,7 @@
                                                 <a href="~/SinhVien/SuaSinhVien?masv=@sv.MaSV" class="btn btn-sm bg-success-light mr-2">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                <a href="#" onclick="if (confirm('Ban co chac muon xoa sinh vien nay khong ?')) { location.href = '/SinhVien/XoaSinhVien?masv=@sv.MaSV' }" class="btn btn-sm bg-danger-light">
+                                                <a href="#" onclick="if (confirm('Bạn có chắc muốn xóa sinh viên này không ?')) { location.href = '/SinhVien/XoaSinhVien?masv=@sv.MaSV' }" class="btn btn-sm bg-danger-light">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </div>

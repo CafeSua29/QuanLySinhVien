@@ -13,6 +13,21 @@ namespace QuanLySinhVien.Controllers
 {
     public class SinhVienController : Controller
     {
+        public bool ChekHoTen(string s)
+        {
+            if (!Char.IsLetter(s[0]))
+            {
+                return false;
+            }
+
+            if (!Char.IsLetter(s[s.Length - 1]))
+            {
+                return false;
+            }
+
+            return s.All(c => Char.IsLetter(c) || c == ' ');
+        }
+
         // GET: SinhVien
         public ActionResult DanhSachSinhVien()
         {
@@ -39,232 +54,109 @@ namespace QuanLySinhVien.Controllers
         [HttpPost]
         public ActionResult ThemSinhVien(SinhVien sv)
         {
-            //if(string.IsNullOrEmpty(sv.MaSV))
-            //{
-            //    ModelState.AddModelError("", "Ma sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.HoSV))
-            //{
-            //    ModelState.AddModelError("", "Ho sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekho = Regex.IsMatch(sv.HoSV, @"^[a-zA-Z]+$");
-
-            //if (!chekho)
-            //{
-            //    ModelState.AddModelError("", "Ho cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.TenSV))
-            //{
-            //    ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekten = Regex.IsMatch(sv.TenSV, @"^[a-zA-Z]+$");
-
-            //if (!chekten)
-            //{
-            //    ModelState.AddModelError("", "Ten cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-
-
-            //if (sv.NgaySinh == DateTime.MinValue)
-            //{
-            //    ModelState.AddModelError("", "Ngay sinh chua duoc chon");
-            //    return View(sv);
-            //}
-
-            //int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-
-
-
-            //if (string.IsNullOrEmpty(sv.QueQuan))
-            //{
-            //    ModelState.AddModelError("", "Que quan khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekque = Regex.IsMatch(sv.QueQuan, @"^[a-zA-Z]+$");
-
-            //if (!chekque)
-            //{
-            //    ModelState.AddModelError("", "Que quan cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.SoDienThoai))
-            //{
-            //    ModelState.AddModelError("", "So dien thoai sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool cheksdt = Regex.IsMatch(sv.SoDienThoai, @"^(\+84|0)[0-9]{7,10}$");
-
-            //if (!cheksdt)
-            //{
-            //    ModelState.AddModelError("", "So dien thoai khong hop le");
-            //    return View(sv);
-            //}
             if (ModelState.IsValid)
             {
-                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-                if (tuoi < 18)
+                if(!ChekHoTen(sv.HoSV))
                 {
-                    TempData["Error"] = "Ngày tháng năm sinh không hợp lệ";
-                    //ModelState.AddModelError("", "Ngay thang nam sinh khong hop le");
+                    TempData["Error"] = "Họ của sinh viên không hợp lệ";
                     return View(sv);
                 }
+
+                if (!ChekHoTen(sv.TenSV))
+                {
+                    TempData["Error2"] = "Tên sinh viên không hợp lệ";
+                    return View(sv);
+                }
+
+                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
+
+                if (tuoi < 18)
+                {
+                    TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
+                    return View(sv);
+                }
+
+                if (!ChekHoTen(sv.QueQuan))
+                {
+                    TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
+                    return View(sv);
+                }
+
                 QuanLySinhVienEntities db = new QuanLySinhVienEntities();
                 List<SinhVien> listSV = db.SinhViens.ToList();
                 var check = db.SinhViens.FirstOrDefault(m => m.MaSV == sv.MaSV);
+
                 if(check != null)
                 {
-                    TempData["Error2"] = "Mã sinh viên không được trùng";
-                    //ModelState.AddModelError("", "Ma sinh vien khong duoc trung");
+                    TempData["Error5"] = "Mã sinh viên không được trùng";
                     return View(sv);
                 }
-                else {db.SinhViens.Add(sv);
-                db.SaveChanges(); }
+                else 
+                {
+                    db.SinhViens.Add(sv);
+                    db.SaveChanges(); 
+                }
+
                 return RedirectToAction("DanhSachSinhVien");
-                //foreach(var svien in listSV)
-                //{
-                //    if (svien.MaSV.Equals(sv.MaSV))
-                //    {
-
-                //    }
-                //}
             }
-            else { return View(sv); }
-
-            
+            else 
+            {
+                TempData["Error6"] = "Không thể thêm mới sinh viên";
+                return View(sv); 
+            }
         }
 
         public ActionResult SuaSinhVien(string masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
             SinhVien sv = db.SinhViens.Find(masv);
-            ViewBag.NgaySinh = sv.NgaySinh;
+
             return View(sv);
         }
 
         [HttpPost]
         public ActionResult SuaSinhVien(SinhVien sv)
         {
-            //if (string.IsNullOrEmpty(sv.MaSV))
-            //{
-            //    ModelState.AddModelError("", "Ma sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.HoSV))
-            //{
-            //    ModelState.AddModelError("", "Ho sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekho = Regex.IsMatch(sv.HoSV, @"^[a-zA-Z]+$");
-
-            //if (!chekho)
-            //{
-            //    ModelState.AddModelError("", "Ho cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.TenSV))
-            //{
-            //    ModelState.AddModelError("", "Ten sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekten = Regex.IsMatch(sv.TenSV, @"^[a-zA-Z]+$");
-
-            //if (!chekten)
-            //{
-            //    ModelState.AddModelError("", "Ten cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.GioiTinh))
-            //{
-            //    ModelState.AddModelError("", "Gioi tinh khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //if (sv.NgaySinh == DateTime.MinValue)
-            //{
-            //    ModelState.AddModelError("", "Ngay sinh chua duoc chon");
-            //    return View(sv);
-            //}
-
-            //int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-
-            //if (tuoi < 18)
-            //{
-            //    ModelState.AddModelError("", "Ngay thang nam sinh khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.QueQuan))
-            //{
-            //    ModelState.AddModelError("", "Que quan khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool chekque = Regex.IsMatch(sv.QueQuan, @"^[a-zA-Z]+$");
-
-            //if (!chekque)
-            //{
-            //    ModelState.AddModelError("", "Que quan cua sinh vien khong hop le");
-            //    return View(sv);
-            //}
-
-            //if (string.IsNullOrEmpty(sv.SoDienThoai))
-            //{
-            //    ModelState.AddModelError("", "So dien thoai sinh vien khong duoc de trong");
-            //    return View(sv);
-            //}
-
-            //bool cheksdt = Regex.IsMatch(sv.SoDienThoai, @"^(\+84|0)[0-9]{7,10}$");
-
-            //if (!cheksdt)
-            //{
-            //    ModelState.AddModelError("", "So dien thoai khong hop le");
-            //    return View(sv);
-            //}
-
             if (ModelState.IsValid)
             {
-                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-                if (tuoi < 18)
+                if (!ChekHoTen(sv.HoSV))
                 {
-                    TempData["Error"] = "Ngày tháng năm sinh không hợp lệ";
-                    //ModelState.AddModelError("", "Ngay thang nam sinh khong hop le");
+                    TempData["Error"] = "Họ của sinh viên không hợp lệ";
                     return View(sv);
                 }
-                QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-                var suasv = db.SinhViens.Find(sv.MaSV);
 
-                //suasv.MaSV = sv.MaSV;
-                //suasv.HoSV = sv.HoSV;
-                //suasv.TenSV = sv.TenSV;
-                //suasv.GioiTinh = sv.GioiTinh;
-                //suasv.NgaySinh = sv.NgaySinh;
-                //suasv.QueQuan = sv.QueQuan;
-                //suasv.SoDienThoai = sv.SoDienThoai;
-                //suasv.MaLop = sv.MaLop;
+                if (!ChekHoTen(sv.TenSV))
+                {
+                    TempData["Error2"] = "Tên sinh viên không hợp lệ";
+                    return View(sv);
+                }
+
+                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
+
+                if (tuoi < 18)
+                {
+                    TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
+                    return View(sv);
+                }
+
+                if (!ChekHoTen(sv.QueQuan))
+                {
+                    TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
+                    return View(sv);
+                }
+
+                QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+
                 db.SinhViens.AddOrUpdate(sv);
                 db.SaveChanges();
 
                 return RedirectToAction("DanhSachSinhVien");
             }
-            else { return View(sv); }
+            else 
+            {
+                TempData["Error5"] = "Không thể sửa thông tin sinh viên";
+                return View(sv); 
+            }
             
         }
 
@@ -287,16 +179,17 @@ namespace QuanLySinhVien.Controllers
             ExcelPackage ep = new ExcelPackage();
             ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
 
-            Sheet.Cells["A1"].Value = "Ma sinh vien";
-            Sheet.Cells["B1"].Value = "Ho sinh vien";
-            Sheet.Cells["C1"].Value = "Ten sinh vien";
-            Sheet.Cells["D1"].Value = "Gioi tinh";
-            Sheet.Cells["E1"].Value = "Ngay sinh";
-            Sheet.Cells["F1"].Value = "Que quan";
-            Sheet.Cells["G1"].Value = "So dien thoai";
-            Sheet.Cells["H1"].Value = "Lop quan ly";
+            Sheet.Cells["A1"].Value = "Mã sinh viên";
+            Sheet.Cells["B1"].Value = "Họ sinh viên";
+            Sheet.Cells["C1"].Value = "Tên sinh viên";
+            Sheet.Cells["D1"].Value = "Giới tính";
+            Sheet.Cells["E1"].Value = "Ngày sinh";
+            Sheet.Cells["F1"].Value = "Quê quán";
+            Sheet.Cells["G1"].Value = "Số điện thoại";
+            Sheet.Cells["H1"].Value = "Lớp";
 
-            int row = 2;// dòng bắt đầu ghi dữ liệu
+            int row = 2;
+
             foreach (var sv in listSV)
             {
                 Sheet.Cells[string.Format("A{0}", row)].Value = sv.MaSV;
