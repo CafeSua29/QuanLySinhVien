@@ -572,6 +572,7 @@
     <Content Include="Assets\img\img-01.jpg" />
     <Content Include="Assets\img\index.html" />
     <Content Include="Assets\img\login.jpg" />
+    <Content Include="Assets\img\logo-dhxd.png" />
     <Content Include="Assets\img\logo-small.png" />
     <Content Include="Assets\img\logo-white.png" />
     <Content Include="Assets\img\logo.png" />
@@ -752,6 +753,7 @@
     <Content Include="Views\SinhVien\ChiTietSinhVien.cshtml" />
     <Content Include="Views\SinhVien\ThemSinhVien.cshtml" />
     <Content Include="Views\SinhVien\SuaSinhVien.cshtml" />
+    <Content Include="Views\SinhVien\TimSinhVien.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

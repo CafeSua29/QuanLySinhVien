@@ -1,9 +1,8 @@
-﻿@model List<QuanLySinhVien.Models.SinhVien>
+﻿@model QuanLySinhVien.Models.SinhVien
 
 @{
-    ViewBag.Title = "DanhSachSinhVien";
+    ViewBag.Title = "TimSinhVien";
     Layout = "~/Views/Shared/_Layout1.cshtml";
-    ViewBag.active = 1;
 }
 
 <div class="content container-fluid">
@@ -46,31 +45,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var sv in Model)
-                                {
                                     <tr>
-                                        <td>@sv.MaSV</td>
+                                        <td>@Model.MaSV</td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
-                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV">@sv.HoSV</a>
+                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@Model.MaSV" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
+                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@Model.MaSV">@Model.HoSV</a>
                                             </h2>
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV">@sv.TenSV</a>
+                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@Model.MaSV">@Model.TenSV</a>
                                             </h2>
                                         </td>
-                                        <td>@sv.GioiTinh</td>
-                                        <td>@String.Format("{0:dd-MM-yyyy}", sv.NgaySinh)</td>
-                                        <td>@sv.QueQuan</td>
-                                        <td>@sv.SoDienThoai</td>
+                                        <td>@Model.GioiTinh</td>
+                                        <td>@String.Format("{0:dd-MM-yyyy}", Model.NgaySinh)</td>
+                                        <td>@Model.QueQuan</td>
+                                        <td>@Model.SoDienThoai</td>
                                         @{
                                             QuanLySinhVien.Models.QuanLySinhVienEntities db = new QuanLySinhVien.Models.QuanLySinhVienEntities();
                                             var lops = db.Lops.ToList();
                                             foreach (var lop in lops)
                                             {
-                                                if (@lop.MaLop == @sv.MaLop)
+                                                if (@lop.MaLop == Model.MaLop)
                                                 {
                                                     <td>@lop.TenLop</td>
                                                 }
@@ -78,16 +75,15 @@
                                         }
                                         <td class="text-right">
                                             <div class="actions">
-                                                <a href="~/SinhVien/SuaSinhVien?masv=@sv.MaSV" class="btn btn-sm bg-success-light mr-2">
+                                                <a href="~/SinhVien/SuaSinhVien?masv=@Model.MaSV" class="btn btn-sm bg-success-light mr-2">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                <a href="#" onclick="if (confirm('Bạn có chắc muốn xóa sinh viên này không ?')) { location.href = '/SinhVien/XoaSinhVien?masv=@sv.MaSV' }" class="btn btn-sm bg-danger-light">
+                                                <a href="#" onclick="if (confirm('Bạn có chắc muốn xóa sinh viên này không ?')) { location.href = '/SinhVien/XoaSinhVien?masv=@Model.MaSV' }" class="btn btn-sm bg-danger-light">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                }
                             </tbody>
                         </table>
                     </div>
