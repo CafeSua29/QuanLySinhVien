@@ -9,6 +9,7 @@
 
 namespace QuanLySinhVien.Models
 {
+    using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -40,6 +41,8 @@ namespace QuanLySinhVien.Models
 
         [Display(Name = "Ngày sinh")]
         [Required(ErrorMessage = "Ngày sinh chưa được chọn")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime NgaySinh { get; set; }
 
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Quê quán không hợp lệ")]
@@ -52,7 +55,8 @@ namespace QuanLySinhVien.Models
         [RegularExpression(@"^(\+84|0)[0-9]{7,10}$", ErrorMessage = "Số điện thoại không hợp lệ")]
         public string SoDienThoai { get; set; }
 
-        [Display(Name = "Lớp")]
+        [Display(Name = "Lớp quản lý")]
+        [Required(ErrorMessage = "Yêu cầu chọn lớp")]
         public string MaLop { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
