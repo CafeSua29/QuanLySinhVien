@@ -247,5 +247,14 @@ namespace QuanLySinhVien.Controllers
             Response.BinaryWrite(ep.GetAsByteArray());
             Response.End();
         }
+
+        [HttpPost]
+        public ActionResult TimSinhVien(String masv)
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            SinhVien sv = db.SinhViens.Find(masv);
+
+            return View(sv);
+        }
     }
 }

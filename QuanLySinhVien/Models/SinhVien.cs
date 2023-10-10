@@ -23,7 +23,8 @@ namespace QuanLySinhVien.Models
         }
 
         [Display(Name = "Mã sinh viên")]
-        [Required(ErrorMessage = "Mã sinh viên không được để trống")]           
+        [Required(ErrorMessage = "Mã sinh viên không được để trống")]
+        [RegularExpression(@"^[0-9a-zA-Z]{7}$", ErrorMessage = "Mã sinh viên không hợp lệ")]
         public string MaSV { get; set; }
 
         [Required(ErrorMessage = "Họ của sinh viên không được để trống")]
