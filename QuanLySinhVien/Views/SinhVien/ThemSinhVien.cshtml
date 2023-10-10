@@ -4,6 +4,7 @@
     ViewBag.Title = "ThemSinhVien";
     Layout = "~/Views/Shared/_Layout1.cshtml";
     ViewBag.active = 2;
+    
 }
 
 <div class="content container-fluid">
@@ -70,10 +71,10 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    <select name="GioiTinh">
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                        <option value="Không xác định">Không xác định</option>
+                                    <select class="form-control" name="GioiTinh">
+                                        <option value="Nam" @Html.Raw("Nam" == Model.GioiTinh ? "selected" : "")>Nam</option>
+                                        <option value="Nữ" @Html.Raw("Nữ" == Model.GioiTinh ? "selected" : "")>Nữ</option>
+                                        <option value="Không xác định" @Html.Raw("Không xác định" == Model.GioiTinh ? "selected" : "")>Không xác định</option>
                                     </select>
                                     @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
                                 </div>
@@ -110,18 +111,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="control-label col-md-2">Khoa đào tạo</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("MaKhoa", null,"--Chọn khoa--", htmlAttributes: new { @class = "form-control", @id = "Khoa" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.MaLop, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @{
-                                        QuanLySinhVien.Models.QuanLySinhVienEntities db = new QuanLySinhVien.Models.QuanLySinhVienEntities();
-                                        var lops = db.Lops.ToList();
-                                        <select name="maLop">
-                                            @foreach (var lop in lops)
-                                            {
-                                                <option value="@lop.MaLop">@lop.TenLop</option>
-                                            }
-                                        </select>
-                                    }
+                                    @Html.DropDownList("MaLop", null, "--Chọn lớp--" , htmlAttributes: new { @class = "form-control", @id = "Lop" })
                                     @Html.ValidationMessageFor(model => model.MaLop, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -143,7 +142,33 @@
 </div>
 
 
-
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#Khoa').change(function () {
+                var id = $('#Khoa').val();
+                DanhSachLopTheoKhoa(id);
+            });
+        });
+        function DanhSachLopTheoKhoa(id) {
+            $.ajax({
+                url: "/SinhVien/DanhSachLopTheoKhoa",
+                type: 'post',
+                data: { id: id },
+                success: function (data) {
+                    let display = '<option value="">--Chọn lớp--</option>';
+                    $.each(data.dsLop, function (index, item) {
+                        display += '<option value = "' + item.MaLop + '">';
+                        display += item.TenLop + '</option>';
+                    });
+                    $('#Lop').html(display);
+                }
+            });
+        }
+    </script>
+    
+}
 
 
 

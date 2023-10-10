@@ -25,107 +25,134 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                            <div class="col-12">
-                                <h5 class="form-title"><span>Thông tin sinh viên</span></h5>
-                            </div>
+                    <div class="form-horizontal">
+                        <div class="col-12">
+                            <h5 class="form-title"><span>Thông tin sinh viên</span></h5>
+                        </div>
 
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.MaSV)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.MaSV)
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.HoSV, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.HoSV, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.HoSV, "", new { @class = "text-danger" })
-                                    <div class="text-danger">
-                                        @TempData["Error"]
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.TenSV, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.TenSV, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TenSV, "", new { @class = "text-danger" })
-                                    <div class="text-danger">
-                                        @TempData["Error2"]
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <select name="GioiTinh">
-                                        <option value="Nam" @Html.Raw("Nam" == Model.GioiTinh ? "selected" : "")>Nam</option>
-                                        <option value="Nữ" @Html.Raw("Nữ" == Model.GioiTinh ? "selected" : "")>Nữ</option>
-                                        <option value="Không xác định" @Html.Raw("Không xác định" == Model.GioiTinh ? "selected" : "")>Không xác định</option>
-                                    </select>
-                                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", type = "date", value = "2020-11-13" } })
-                                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
-                                    <div class="text-danger">
-                                        @TempData["Error3"]
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.QueQuan, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.QueQuan, "", new { @class = "text-danger" })
-                                    <div class="text-danger">
-                                        @TempData["Error4"]
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.MaLop, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @{
-                                        QuanLySinhVien.Models.QuanLySinhVienEntities db = new QuanLySinhVien.Models.QuanLySinhVienEntities();
-                                        var lops = db.Lops.ToList();
-                                        <select name="maLop">
-                                            @foreach (var lop in lops)
-                                            {
-                                                <option value="@lop.MaLop" @Html.Raw(lop.MaLop == Model.MaLop ? "selected" : "")>@lop.TenLop</option>
-                                            }
-                                        </select>
-                                    }
-                                    @Html.ValidationMessageFor(model => model.MaLop, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Lưu" class="btn btn-primary" />
-                                    <div class="text-danger">
-                                        @TempData["Error5"]
-                                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HoSV, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.HoSV, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HoSV, "", new { @class = "text-danger" })
+                                <div class="text-danger">
+                                    @TempData["Error"]
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TenSV, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenSV, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenSV, "", new { @class = "text-danger" })
+                                <div class="text-danger">
+                                    @TempData["Error2"]
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select class="form-control" name="GioiTinh">
+                                    <option value="Nam" @Html.Raw("Nam" == Model.GioiTinh ? "selected" : "")>Nam</option>
+                                    <option value="Nữ" @Html.Raw("Nữ" == Model.GioiTinh ? "selected" : "")>Nữ</option>
+                                    <option value="Không xác định" @Html.Raw("Không xác định" == Model.GioiTinh ? "selected" : "")>Không xác định</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", @type = "date"} })
+                                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                                <div class="text-danger">
+                                    @TempData["Error3"]
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QueQuan, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.QueQuan, "", new { @class = "text-danger" })
+                                <div class="text-danger">
+                                    @TempData["Error4"]
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Khoa đào tạo</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("MaKhoa", null, "--Chọn khoa--", htmlAttributes: new { @class = "form-control", @id = "Khoa" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaLop, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("MaLop", null, "--Chọn lớp--", htmlAttributes: new { @class = "form-control", @id = "Lop" })
+                                @Html.ValidationMessageFor(model => model.MaLop, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu" class="btn btn-primary" />
+                                <div class="text-danger">
+                                    @TempData["Error5"]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#Khoa').change(function () {
+                var id = $('#Khoa').val();
+                DanhSachLopTheoKhoa(id);
+            });
+        });
+        function DanhSachLopTheoKhoa(id) {
+            $.ajax({
+                url: "/SinhVien/DanhSachLopTheoKhoa",
+                type: 'post',
+                data: { id: id },
+                success: function (data) {
+                    let display = '<option value="">--Chọn lớp--</option>';
+                    $.each(data.dsLop, function (index, item) {
+                        display += '<option value = "' + item.MaLop + '">';
+                        display += item.TenLop + '</option>';
+                    });
+                    $('#Lop').html(display);
+                }
+            });
+        }
+    </script>
+
+}

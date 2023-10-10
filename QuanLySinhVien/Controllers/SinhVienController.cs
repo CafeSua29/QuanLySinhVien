@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using OfficeOpenXml;
 using System.Data.Entity.Migrations;
+using System.Runtime.Remoting.Messaging;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -47,23 +48,28 @@ namespace QuanLySinhVien.Controllers
 
         public ActionResult ThemSinhVien()
         {
-            
+            ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa");
+            ViewBag.MaLop = new SelectList(new List<Lop>(), "MaLop", "TenLop");
             return View(new SinhVien());
         }
 
         [HttpPost]
-        public ActionResult ThemSinhVien(SinhVien sv)
+        public ActionResult ThemSinhVien(string MaKhoa, SinhVien sv )
         {
             if (ModelState.IsValid)
             {
                 if(!ChekHoTen(sv.HoSV))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error"] = "Họ của sinh viên không hợp lệ";
                     return View(sv);
                 }
 
                 if (!ChekHoTen(sv.TenSV))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error2"] = "Tên sinh viên không hợp lệ";
                     return View(sv);
                 }
@@ -72,22 +78,27 @@ namespace QuanLySinhVien.Controllers
 
                 if (tuoi < 18)
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
                     return View(sv);
                 }
 
                 if (!ChekHoTen(sv.QueQuan))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
                     return View(sv);
                 }
 
                 QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-                List<SinhVien> listSV = db.SinhViens.ToList();
                 var check = db.SinhViens.FirstOrDefault(m => m.MaSV == sv.MaSV);
 
                 if(check != null)
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error5"] = "Mã sinh viên không được trùng";
                     return View(sv);
                 }
@@ -95,12 +106,13 @@ namespace QuanLySinhVien.Controllers
                 {
                     db.SinhViens.Add(sv);
                     db.SaveChanges(); 
+                    return RedirectToAction("DanhSachSinhVien");
                 }
-
-                return RedirectToAction("DanhSachSinhVien");
             }
             else 
             {
+                ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                 TempData["Error6"] = "Không thể thêm mới sinh viên";
                 return View(sv); 
             }
@@ -110,23 +122,29 @@ namespace QuanLySinhVien.Controllers
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
             SinhVien sv = db.SinhViens.Find(masv);
-
+            string MaKhoa = LopBUS.LopTheoSinhVien(sv.MaLop).MaKhoa;
+            ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+            ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
             return View(sv);
         }
 
         [HttpPost]
-        public ActionResult SuaSinhVien(SinhVien sv)
+        public ActionResult SuaSinhVien(SinhVien sv, string MaKhoa)
         {
             if (ModelState.IsValid)
             {
                 if (!ChekHoTen(sv.HoSV))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error"] = "Họ của sinh viên không hợp lệ";
                     return View(sv);
                 }
 
                 if (!ChekHoTen(sv.TenSV))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error2"] = "Tên sinh viên không hợp lệ";
                     return View(sv);
                 }
@@ -135,12 +153,16 @@ namespace QuanLySinhVien.Controllers
 
                 if (tuoi < 18)
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
                     return View(sv);
                 }
 
                 if (!ChekHoTen(sv.QueQuan))
                 {
+                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                     TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
                     return View(sv);
                 }
@@ -154,10 +176,25 @@ namespace QuanLySinhVien.Controllers
             }
             else 
             {
+                ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
+                ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
                 TempData["Error5"] = "Không thể sửa thông tin sinh viên";
-                return View(sv); 
+                return View(sv);
             }
             
+        }
+
+        [HttpPost]
+        public JsonResult DanhSachLopTheoKhoa(string id)
+        {
+            var dsLop = (from item in LopBUS.DanhSachLopTheoKhoa(id)
+                        select new
+                        {
+                            MaLop = item.MaLop,
+                            TenLop = item.TenLop,
+                            MaKhoa = item.MaKhoa,
+                        }).ToList();
+            return Json(new { dsLop = dsLop }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult XoaSinhVien(string masv)
