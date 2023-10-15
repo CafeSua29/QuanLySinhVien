@@ -800,6 +800,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Global.asax.cs">
@@ -811,11 +812,11 @@
     <Compile Include="Models\Khoa.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KhoaBUS.cs" />
+    <Compile Include="Models\BUS\KhoaBUS.cs" />
     <Compile Include="Models\Lop.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LopBUS.cs" />
+    <Compile Include="Models\BUS\LopBUS.cs" />
     <Compile Include="Models\MonHoc.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
@@ -840,6 +841,8 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validation\NameValidation.cs" />
+    <Compile Include="Models\Validation\NgaySinhValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -882,6 +885,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
