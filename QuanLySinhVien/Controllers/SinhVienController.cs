@@ -9,10 +9,11 @@ using System.Globalization;
 using OfficeOpenXml;
 using System.Data.Entity.Migrations;
 using System.Runtime.Remoting.Messaging;
-
+using QuanLySinhVien.App_Start;
 
 namespace QuanLySinhVien.Controllers
 {
+    [ThanhVienAuthorize]
     public class SinhVienController : Controller
     {
         // GET: SinhVien

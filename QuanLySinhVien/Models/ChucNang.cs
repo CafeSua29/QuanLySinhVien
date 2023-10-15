@@ -12,20 +12,18 @@ namespace QuanLySinhVien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MonHoc
+    public partial class ChucNang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MonHoc()
+        public ChucNang()
         {
-            this.KetQuas = new HashSet<KetQua>();
+            this.VaiTroes = new HashSet<VaiTro>();
         }
     
-        public string MaMH { get; set; }
-        public string TenMH { get; set; }
-        public Nullable<int> SoTin { get; set; }
-        public Nullable<bool> BaoLuu { get; set; }
+        public string MaCN { get; set; }
+        public string TenCN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KetQua> KetQuas { get; set; }
+        public virtual ICollection<VaiTro> VaiTroes { get; set; }
     }
 }

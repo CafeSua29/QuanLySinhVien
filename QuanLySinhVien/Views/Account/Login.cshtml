@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                    <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>Login</h1>
+                        <p class="account-subtitle">Access to our dashboard</p>
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <input name="UserName" class="form-control" type="text" placeholder="UserName">
+                            </div>
+                            <div class="form-group">
+                                <input name="Password" class="form-control" type="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <span class="text-danger">@TempData["Error"]</span>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            </div>
+                        }
+                        <div class="login-or">
+                            <span class="or-line"></span>
+                            <span class="span-or">or</span>
+                        </div>
+
+                        <div class="text-center dont-have">Don’t have an account? <a href="~/Account/Register">Register</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

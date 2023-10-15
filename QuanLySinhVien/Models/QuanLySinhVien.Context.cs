@@ -25,11 +25,15 @@ namespace QuanLySinhVien.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ChucNang> ChucNangs { get; set; }
         public virtual DbSet<KetQua> KetQuas { get; set; }
         public virtual DbSet<Khoa> Khoas { get; set; }
         public virtual DbSet<Lop> Lops { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<ThanhVien> ThanhViens { get; set; }
+        public virtual DbSet<VaiTro> VaiTroes { get; set; }
     }
 }

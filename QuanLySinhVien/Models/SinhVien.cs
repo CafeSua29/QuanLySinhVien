@@ -9,7 +9,6 @@
 
 namespace QuanLySinhVien.Models
 {
-    using Microsoft.AspNetCore.Mvc;
     using QuanLySinhVien.Models.Validation;
     using System;
     using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace QuanLySinhVien.Models
         [Display(Name = "Mã sinh viên")]
         [Required(ErrorMessage = "Mã sinh viên không được để trống")]
         [RegularExpression(@"^[0-9a-zA-Z]{7}$", ErrorMessage = "Mã sinh viên không hợp lệ")]
-        
+
         public string MaSV { get; set; }
 
         [Required(ErrorMessage = "Họ của sinh viên không được để trống")]
@@ -38,7 +37,7 @@ namespace QuanLySinhVien.Models
         [Required(ErrorMessage = "Tên sinh viên không được để trống")]
         [NameValidation(ErrorMessage = "Tên sinh viên không hợp lệ")]
         [Display(Name = "Tên sinh viên")]
-        
+
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Tên không hợp lệ")]
         public string TenSV { get; set; }
 
@@ -66,10 +65,9 @@ namespace QuanLySinhVien.Models
         [Display(Name = "Lớp quản lý")]
         [Required(ErrorMessage = "Yêu cầu chọn lớp")]
         public string MaLop { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
-
         public virtual Lop Lop { get; set; }
     }
 }

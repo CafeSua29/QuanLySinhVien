@@ -12,20 +12,21 @@ namespace QuanLySinhVien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MonHoc
+    public partial class VaiTro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MonHoc()
+        public VaiTro()
         {
-            this.KetQuas = new HashSet<KetQua>();
+            this.ThanhViens = new HashSet<ThanhVien>();
+            this.ChucNangs = new HashSet<ChucNang>();
         }
     
-        public string MaMH { get; set; }
-        public string TenMH { get; set; }
-        public Nullable<int> SoTin { get; set; }
-        public Nullable<bool> BaoLuu { get; set; }
+        public string MaVT { get; set; }
+        public string TenVT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KetQua> KetQuas { get; set; }
+        public virtual ICollection<ThanhVien> ThanhViens { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChucNang> ChucNangs { get; set; }
     }
 }
