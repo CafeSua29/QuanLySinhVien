@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
 using QuanLySinhVien.Models;
 
 namespace QuanLySinhVien.Controllers
@@ -27,6 +28,10 @@ namespace QuanLySinhVien.Controllers
                 if (tvSession != null)
                 {
                     Session["user"] = tvSession.UserName;
+                    if (tvSession.UserName == "admin")
+                    {
+                        return RedirectToAction("DanhSachThanhVien", "ThanhVien", new { area = "Admin" });
+                    }
                     return RedirectToAction("DanhSachSinhVien", "SinhVien");
                 }
                 else
@@ -44,41 +49,6 @@ namespace QuanLySinhVien.Controllers
             Session.Remove("user");
 
             return RedirectToAction("Login");
-        }
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(TaiKhoan model)
-        {
-            if (ModelState.IsValid)
-            {
-                var check = db.TaiKhoans.FirstOrDefault(m => m.UserName.Equals(model.UserName));
-                if (check == null)
-                {
-                    db.TaiKhoans.Add(new TaiKhoan
-                    {
-                        UserName = model.UserName,
-                        Password = model.Password
-                    });
-                    db.ThanhViens.Add(new ThanhVien
-                    {
-                        UserName = model.UserName
-                    });
-                    db.SaveChanges();
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    TempData["Error"] = "Tên đăng nhập đã được sử dụng";
-                    return View(model);
-                }
-            }
-            return View(model);
         }
     }
 }

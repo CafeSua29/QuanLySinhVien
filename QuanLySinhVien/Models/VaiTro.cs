@@ -17,16 +17,16 @@ namespace QuanLySinhVien.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VaiTro()
         {
+            this.PhanQuyens = new HashSet<PhanQuyen>();
             this.ThanhViens = new HashSet<ThanhVien>();
-            this.ChucNangs = new HashSet<ChucNang>();
         }
     
         public string MaVT { get; set; }
         public string TenVT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThanhVien> ThanhViens { get; set; }
+        public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChucNang> ChucNangs { get; set; }
+        public virtual ICollection<ThanhVien> ThanhViens { get; set; }
     }
 }

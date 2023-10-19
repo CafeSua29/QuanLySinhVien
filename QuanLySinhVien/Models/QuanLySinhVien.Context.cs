@@ -30,6 +30,8 @@ namespace QuanLySinhVien.Models
         public virtual DbSet<Khoa> Khoas { get; set; }
         public virtual DbSet<Lop> Lops { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }
+        public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
+        public virtual DbSet<QuanTriVien> QuanTriViens { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }

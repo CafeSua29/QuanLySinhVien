@@ -13,10 +13,10 @@ using QuanLySinhVien.App_Start;
 
 namespace QuanLySinhVien.Controllers
 {
-    [ThanhVienAuthorize]
     public class SinhVienController : Controller
     {
         // GET: SinhVien
+        [ThanhVienAuthorize(MaChucNang = "DSSV")]
         public ActionResult DanhSachSinhVien()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -24,6 +24,7 @@ namespace QuanLySinhVien.Controllers
             return View(listSV);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "CTSV")]
         public ActionResult ChiTietSinhVien(String masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -32,6 +33,7 @@ namespace QuanLySinhVien.Controllers
             return View(sv);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "TSV")]
         public ActionResult ThemSinhVien()
         {
             ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa");
@@ -40,6 +42,7 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
+        [ThanhVienAuthorize(MaChucNang = "TSV")]
         public ActionResult ThemSinhVien(string MaKhoa, SinhVien sv)
         {
             if (ModelState.IsValid)
@@ -70,6 +73,7 @@ namespace QuanLySinhVien.Controllers
             }
         }
 
+        [ThanhVienAuthorize(MaChucNang = "SSV")]
         public ActionResult SuaSinhVien(string masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -81,6 +85,7 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
+        [ThanhVienAuthorize(MaChucNang = "SSV")]
         public ActionResult SuaSinhVien(SinhVien sv, string MaKhoa)
         {
             if (ModelState.IsValid)
@@ -114,6 +119,7 @@ namespace QuanLySinhVien.Controllers
             return Json(new { dsLop = dsLop }, JsonRequestBehavior.AllowGet);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "XSV")]
         public ActionResult XoaSinhVien(string masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -121,10 +127,10 @@ namespace QuanLySinhVien.Controllers
 
             db.SinhViens.Remove(sv);
             db.SaveChanges();
-
             return RedirectToAction("DanhSachSinhVien");
         }
 
+        [ThanhVienAuthorize(MaChucNang = "XFE")]
         public void XuatFileExcel()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -166,11 +172,11 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
+        [ThanhVienAuthorize(MaChucNang = "TKSV")]
         public ActionResult TimSinhVien(String masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
             SinhVien sv = db.SinhViens.Find(masv);
-
             return View(sv);
         }
     }
