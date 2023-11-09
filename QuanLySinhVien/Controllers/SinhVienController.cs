@@ -10,6 +10,8 @@ using OfficeOpenXml;
 using System.Data.Entity.Migrations;
 using System.Runtime.Remoting.Messaging;
 using QuanLySinhVien.App_Start;
+using QuanLySinhVien.Models.BUS;
+using System.Drawing;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -173,11 +175,22 @@ namespace QuanLySinhVien.Controllers
 
         [HttpPost]
         [ThanhVienAuthorize(MaChucNang = "TKSV")]
-        public ActionResult TimSinhVien(String masv)
+        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien)
         {
-            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-            SinhVien sv = db.SinhViens.Find(masv);
-            return View(sv);
+            var ds = SinhVienBUS.DanhSachSinhVien();
+            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()))
+                              select new
+                              {
+                                  MaSV = item.MaSV,
+                                  HoSV = item.HoSV,
+                                  TenSV = item.TenSV,
+                                  GioiTinh = item.GioiTinh,
+                                  NgaySinh = String.Format("{0: dd-MM-yyyy}", item.NgaySinh),
+                                  QueQuan = item.QueQuan,
+                                  SoDienThoai = item.SoDienThoai,
+                                  TenLop = LopBUS.LopTheoSinhVien(item.MaLop).TenLop,
+                              }).ToList();
+            return Json(new { dsSinhVien = dsSinhVien }, JsonRequestBehavior.AllowGet);
         }
     }
 }

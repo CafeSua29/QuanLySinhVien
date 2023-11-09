@@ -10,7 +10,7 @@ namespace QuanLySinhVien.Models.BUS
         public static IEnumerable<VaiTro> DanhSachVaiTro()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-            IQueryable<VaiTro> dsVT= 
+            IQueryable<VaiTro> dsVT = 
                 from ds in db.VaiTroes
                 select ds;
             return dsVT;

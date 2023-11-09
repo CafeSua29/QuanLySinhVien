@@ -6,7 +6,6 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using QuanLySinhVien.Models;
 using QuanLySinhVien.Models.BUS;
 
 namespace QuanLySinhVien.App_Start

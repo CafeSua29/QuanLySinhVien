@@ -11,10 +11,9 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="top-nav-search">
-                    <form action="~/SinhVien/TimSinhVien" method="post">
-                        <input type="text" class="form-control" placeholder="Nhập thông tin tìm kiếm" name="masv">
-                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    <input type="text" class="form-control" placeholder="Nhập mã sinh viên" id="MaSinhVien">
+                    <input type="text" class="form-control" placeholder="Nhập tên sinh viên" id="TenSinhVien">
+                    <button class="btn" type="submit" id="btnTimKiem"><i class="fas fa-search">Tìm kiếm</i></button>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active"></li>
@@ -45,14 +44,13 @@
                                     <th class="text-right">Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbSinhVien">
                                 @foreach (var sv in Model)
                                 {
                                     <tr>
                                         <td>@sv.MaSV</td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
                                                 <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV">@sv.HoSV</a>
                                             </h2>
                                         </td>
@@ -97,3 +95,42 @@
     </div>
 </div>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#btnTimKiem').click(function () {
+                var MaSinhVien = $('#MaSinhVien').val();
+                var TenSinhVien = $('#TenSinhVien').val();
+                DanhSachSinhVien(MaSinhVien, TenSinhVien);
+                console.log(MaSinhVien, TenSinhVien)
+            });
+        });
+
+        function DanhSachSinhVien(MaSinhVien, TenSinhVien) {
+            $.ajax({
+                url: "/SinhVien/TimKiemSinhVien",
+                type: 'post',
+                data: { MaSinhVien: MaSinhVien, TenSinhVien: TenSinhVien },
+                success: function (data) {
+                    console.log('helo');
+                    let display = '';
+                    $.each(data.dsSinhVien, function (index, item) {
+                        display += '<tr><td>' + item.MaSV + '</td>';
+                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.HoSV + '</a></h2></td>';
+                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.TenSV + '</a></h2></td>';
+                        display += '<td>' + item.GioiTinh + '</td>';
+                        display += '<td>' + item.NgaySinh + '</td>';
+                        display += '<td>' + item.QueQuan + '</td>';
+                        display += '<td>' + item.SoDienThoai + '</td>';
+                        display += '<td>' + item.TenLop + '</td>';
+                        display += '<td class="text-right"><div class="actions"><a href="/SinhVien/SuaSinhVien?masv=' + item.MaSV + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>';
+                        display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = "/SinhVien/XoaSinhVien?masv=' + item.MaSV + '"}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
+                    });
+                    $('#tbSinhVien').html(display);
+                }
+            });
+        }
+    </script>
+
+}

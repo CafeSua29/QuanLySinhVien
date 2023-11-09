@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLySinhVien.Models;
 using QuanLySinhVien.Models.BUS;
+using QuanLySinhVien.App_Start;
 
 namespace QuanLySinhVien.Areas.Admin.Controllers
 {
+    [AdminAuthorite]
     public class ThanhVienController : Controller
     {
         // GET: Admin/Home

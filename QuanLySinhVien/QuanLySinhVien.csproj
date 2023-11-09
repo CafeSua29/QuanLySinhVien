@@ -800,6 +800,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorite.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ThanhVienAuthorize.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -812,8 +813,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BUS\ChucNangBUS.cs" />
+    <Compile Include="Models\BUS\ChucNangSelectionBUS.cs" />
     <Compile Include="Models\BUS\KhoaBUS.cs" />
     <Compile Include="Models\BUS\LopBUS.cs" />
+    <Compile Include="Models\BUS\PhanQuyenBUS.cs" />
+    <Compile Include="Models\BUS\SinhVienBUS.cs" />
     <Compile Include="Models\BUS\ThanhVienBUS.cs" />
     <Compile Include="Models\BUS\VaiTroBUS.cs" />
     <Compile Include="Models\ChucNang.cs">
@@ -869,6 +874,7 @@
     </Compile>
     <Compile Include="Models\Validation\NameValidation.cs" />
     <Compile Include="Models\Validation\NgaySinhValidation.cs" />
+    <Compile Include="Models\ViewModel\ChucNangSelection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +906,10 @@
       <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\ThanhVien\ThemTaiKhoan.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\DanhSachVaiTro.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\ThemVaiTro.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ChucNangSelectionView.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\SuaVaiTro.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\SinhVien\DanhSachSinhVien.cshtml" />
@@ -921,7 +931,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AccountAdmin\" />
-    <Folder Include="Areas\Admin\Views\VaiTro\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
