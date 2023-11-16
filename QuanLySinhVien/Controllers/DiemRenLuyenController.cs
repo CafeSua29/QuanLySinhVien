@@ -12,7 +12,6 @@ namespace QuanLySinhVien.Controllers
         // GET: DiemRenLuyen
         public ActionResult DanhSachBangDiemRenLuyen()
         {
-            ViewBag.Ma
             return View();
         }
 
