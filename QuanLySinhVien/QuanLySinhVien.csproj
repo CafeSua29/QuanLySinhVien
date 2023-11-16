@@ -885,7 +885,7 @@
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
-      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
