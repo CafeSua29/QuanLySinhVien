@@ -1,0 +1,129 @@
+﻿
+
+@{
+    ViewBag.Title = "DanhSachBangDiemRenLuyen";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.active = "DanhSachBangDiemRenLuyen";
+}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Danh sách các bảng</h3>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col">
+            <div class="top-nav-search">
+                @Html.DropDownList(new SelectList(QuanLySinhVien.Models.BUS.HocKy_NamHocBUS.DanhSachHocKy(), "MaHK_NH", "TenHK_NH"), null, "--Chọn học kỳ--", htmlAttributes: new { @class = "form-control", @id = "HocKy_NamHoc" })
+                <button class="btn" type="submit" id="btnXem"><i class="fas fa-search">Xem</i></button>
+            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item active"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0 datatable">
+                            <thead>
+                                <tr>
+                                    <th>Mã sinh viên</th>
+                                    <th>Họ sinh viên</th>
+                                    <th>Tên sinh viên</th>
+                                    <th>Điểm tổng</th>
+                                    <th class="text-right">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var sv in Model)
+                                {
+                                    <tr>
+                                        <td>@sv.MaSV</td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV">@sv.HoSV</a>
+                                            </h2>
+                                        </td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a href="~/SinhVien/ChiTietSinhVien?masv=@sv.MaSV">@sv.TenSV</a>
+                                            </h2>
+                                        </td>
+                                        <td>@sv.SoDienThoai</td>
+                                        @{
+                                            QuanLySinhVien.Models.QuanLySinhVienEntities db = new QuanLySinhVien.Models.QuanLySinhVienEntities();
+                                            var lops = db.Lops.ToList();
+                                            foreach (var lop in lops)
+                                            {
+                                                if (@lop.MaLop == @sv.MaLop)
+                                                {
+                                                    <td>@lop.TenLop</td>
+                                                }
+                                            }
+                                        }
+                                        <td class="text-right">
+                                            <div class="actions">
+                                                <a href="~/SinhVien/SuaSinhVien?masv=@sv.MaSV" class="btn btn-sm bg-success-light mr-2">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <a href="#" onclick="if (confirm('Bạn có chắc muốn xóa sinh viên này không ?')) { location.href = '/SinhVien/XoaSinhVien?masv=@sv.MaSV' }" class="btn btn-sm bg-danger-light">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#btnXem').click(function () {
+                var MaSinhVien = $('#MaSinhVien').val();
+                var TenSinhVien = $('#TenSinhVien').val();
+                DanhSachSinhVien(MaSinhVien, TenSinhVien);
+                console.log(MaSinhVien, TenSinhVien)
+            });
+        });
+
+        function DanhSachSinhVien(MaSinhVien, TenSinhVien) {
+            $.ajax({
+                url: "/SinhVien/TimKiemSinhVien",
+                type: 'post',
+                data: { MaSinhVien: MaSinhVien, TenSinhVien: TenSinhVien },
+                success: function (data) {
+                    console.log('helo');
+                    let display = '';
+                    $.each(data.dsSinhVien, function (index, item) {
+                        display += '<tr><td>' + item.MaSV + '</td>';
+                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.HoSV + '</a></h2></td>';
+                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.TenSV + '</a></h2></td>';
+                        display += '<td>' + item.GioiTinh + '</td>';
+                        display += '<td>' + item.NgaySinh + '</td>';
+                        display += '<td>' + item.QueQuan + '</td>';
+                        display += '<td>' + item.SoDienThoai + '</td>';
+                        display += '<td>' + item.TenLop + '</td>';
+                        display += '<td class="text-right"><div class="actions"><a href="/SinhVien/SuaSinhVien?masv=' + item.MaSV + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>';
+                        display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = "/SinhVien/XoaSinhVien?masv=' + item.MaSV + '"}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
+                    });
+                    $('#tbSinhVien').html(display);
+                }
+            });
+        }
+    </script>
+
+}

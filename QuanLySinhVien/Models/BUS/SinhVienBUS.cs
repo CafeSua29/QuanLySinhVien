@@ -15,5 +15,10 @@ namespace QuanLySinhVien.Models.BUS
                 select ds;
             return dsSinhVien;
         }
+        public static SinhVien ChiTietSinhVienTheoBangDRL(string MaSV)
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            return db.SinhViens.FirstOrDefault(m => m.MaSV.Equals(MaSV));
+        }
     }
 }

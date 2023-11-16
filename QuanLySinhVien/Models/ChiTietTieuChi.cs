@@ -12,18 +12,13 @@ namespace QuanLySinhVien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ThanhVien
+    public partial class ChiTietTieuChi
     {
-        public string UserName { get; set; }
-        public string HoTV { get; set; }
-        public string TenTV { get; set; }
-        public string GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
-        public string QueQuan { get; set; }
-        public Nullable<int> SoDienThoai { get; set; }
-        public string MaVT { get; set; }
+        public int MaBangDRL { get; set; }
+        public int MaTieuChi { get; set; }
+        public Nullable<int> Diem { get; set; }
     
-        public virtual TaiKhoan TaiKhoan { get; set; }
-        public virtual VaiTro VaiTro { get; set; }
+        public virtual BangDiemRenLuyen BangDiemRenLuyen { get; set; }
+        public virtual TieuChi TieuChi { get; set; }
     }
 }

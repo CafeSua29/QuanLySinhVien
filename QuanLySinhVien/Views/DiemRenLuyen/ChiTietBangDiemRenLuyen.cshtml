@@ -1,0 +1,61 @@
+﻿@model QuanLySinhVien.Models.BangDiemRenLuyen
+
+@{
+    ViewBag.Title = "ChiTietBangDiemRenLuyen";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    //ViewBag.active = "DanhSachBangDiemRenLuyen";
+}
+
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Bảng điểm rèn luyện</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th>Nội dung và tiêu chí đánh giá</th>
+                                    <th>Mức điểm tối đa</th>
+                                    <th>Mức điểm tự đánh giá của sinh viên</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    List<QuanLySinhVien.Models.MucTieuChi> dsMTC = QuanLySinhVien.Models.BUS.MucTieuChiBUS.DanhSachMucTieuChi().ToList();
+                                    for (int i = 0; i < dsMTC.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td style="font-weight: bold">@dsMTC[i].TenMucTieuChi</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        List<QuanLySinhVien.Models.TieuChi> dsTC = QuanLySinhVien.Models.BUS.TieuChiBUS.DanhSachTieuChiTheoMuc(dsMTC[i].MaMucTieuChi).ToList();
+                                        for (int j = 0; j < dsTC.Count(); j++)
+                                        {
+                                            <tr>
+                                                <td>@dsTC[j].TenTieuChi</td>
+                                                <td style="text-align: center">@dsTC[j].DiemToiDa</td>
+                                                <td style="text-align: center">@QuanLySinhVien.Models.BUS.ChiTietTieuChiBUS.ChiTietTieuChiTheoBangDRL_TieuChi(Model.MaBangDRL, dsTC[j].MaTieuChi).Diem</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40277238958f4fce862a42fc7f6f94d3" Name="Diagram1">
+      <Diagram DiagramId="40277238958f4fce862a42fc7f6f94d3" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="QuanLySinhVienModel.ChucNang" Width="1.5" PointX="8.25" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLySinhVienModel.KetQua" Width="1.5" PointX="6.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLySinhVienModel.Khoa" Width="1.5" PointX="0.5" PointY="5" IsExpanded="true" />
@@ -26,6 +26,23 @@
         <AssociationConnector Association="QuanLySinhVienModel.FK_QuanTriVien_TaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLySinhVienModel.FK_ThanhVien_TaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLySinhVienModel.FK_ThanhVien_VaiTro" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.BangDiemRenLuyen" Width="1.5" PointX="11.875" PointY="7.25" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.ChiTietTieuChi" Width="1.5" PointX="14.125" PointY="4.625" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.HocBong" Width="1.5" PointX="14.875" PointY="7.5" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.HocKy" Width="1.5" PointX="7.375" PointY="10" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.HocKy_NamHoc" Width="1.5" PointX="9.625" PointY="9.5" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.MucTieuChi" Width="1.5" PointX="9.625" PointY="13.75" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.NamHoc" Width="1.5" PointX="7.375" PointY="13" />
+        <EntityTypeShape EntityType="QuanLySinhVienModel.TieuChi" Width="1.5" PointX="11.875" PointY="13.5" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_BangDiemRenLuyen_HocKy_NamHoc" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_BangDiemRenLuyen_SinhVien" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_ChiTietTieuChi_BangDiemRenLuyen" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_ChiTietTieuChi_TieuChi" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_HocBong_HocKy_NamHoc" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_HocBong_SinhVien" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_HocKy_NamHoc_HocKy" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_HocKy_NamHoc_NamHoc" />
+        <AssociationConnector Association="QuanLySinhVienModel.FK_TieuChi_MucTieuChi" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

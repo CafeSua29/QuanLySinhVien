@@ -15,7 +15,7 @@ namespace QuanLySinhVien.App_Start
         public string MaChucNang { get; set; }
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            string tkSession = (string)HttpContext.Current.Session["user"];
+            string tkSession = (string)HttpContext.Current.Session["username"];
             if (tkSession != null)
             {
                 QuanLySinhVienEntities db = new QuanLySinhVienEntities();

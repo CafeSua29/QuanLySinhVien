@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNetCore.Http;
 using QuanLySinhVien.Models;
+using QuanLySinhVien.App_Start;
+using System.Web.UI.WebControls;
+using QuanLySinhVien.Models.ViewModel;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -24,10 +27,10 @@ namespace QuanLySinhVien.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tvSession = db.TaiKhoans.SingleOrDefault(m => m.UserName.ToLower().Equals(UserName.ToLower()) && m.Password.Equals(Password));
-                if (tvSession != null)
+                var tvSession = db.TaiKhoans.SingleOrDefault(m => m.UserName.ToLower().Equals(UserName.ToLower()));
+                if (tvSession.Password.Equals(Password))
                 {
-                    Session["user"] = tvSession.UserName;
+                    Session["username"] = tvSession.UserName;
                     if (tvSession.UserName == "admin")
                     {
                         return RedirectToAction("DanhSachThanhVien", "ThanhVien", new { area = "Admin" });
@@ -46,9 +49,40 @@ namespace QuanLySinhVien.Controllers
 
         public ActionResult Logout()
         {
-            Session.Remove("user");
+            Session.Remove("username");
 
             return RedirectToAction("Login");
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordModel ChPass)
+        {
+            if (ModelState.IsValid)
+            {
+                string UserName = (string)Session["username"];
+                var tk = db.TaiKhoans.FirstOrDefault(m => m.UserName == UserName);
+                if (tk.Password.Equals(ChPass.CurrentPassword))
+                {
+                    tk.Password = ChPass.ConfirmPassword;
+                    db.SaveChanges();
+                    return RedirectToAction("Logout", "Account");
+                }
+                else
+                {
+                    TempData["Error"] = "Sai mật khẩu";
+                    return View();
+                }
+            }
+            else 
+            {
+                return View(); 
+            }
         }
     }
 }

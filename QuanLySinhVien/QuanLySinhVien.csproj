@@ -809,19 +809,40 @@
     <Compile Include="Areas\Admin\Controllers\VaiTroController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaoLoiController.cs" />
+    <Compile Include="Controllers\DiemRenLuyenController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BangDiemRenLuyen.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BUS\BangDiemRenLuyenBUS.cs" />
+    <Compile Include="Models\BUS\ChiTietTieuChiBUS.cs" />
     <Compile Include="Models\BUS\ChucNangBUS.cs" />
     <Compile Include="Models\BUS\ChucNangSelectionBUS.cs" />
+    <Compile Include="Models\BUS\HocKy_NamHocBUS.cs" />
     <Compile Include="Models\BUS\KhoaBUS.cs" />
     <Compile Include="Models\BUS\LopBUS.cs" />
+    <Compile Include="Models\BUS\MucTieuChiBUS.cs" />
     <Compile Include="Models\BUS\PhanQuyenBUS.cs" />
     <Compile Include="Models\BUS\SinhVienBUS.cs" />
     <Compile Include="Models\BUS\ThanhVienBUS.cs" />
+    <Compile Include="Models\BUS\TieuChiBUS.cs" />
     <Compile Include="Models\BUS\VaiTroBUS.cs" />
+    <Compile Include="Models\ChiTietTieuChi.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChucNang.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HocBong.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HocKy.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HocKy_NamHoc.cs">
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KetQua.cs">
@@ -834,6 +855,12 @@
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MonHoc.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MucTieuChi.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NamHoc.cs">
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhanQuyen.cs">
@@ -869,11 +896,15 @@
     <Compile Include="Models\ThanhVien.cs">
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TieuChi.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\VaiTro.cs">
       <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Validation\NameValidation.cs" />
     <Compile Include="Models\Validation\NgaySinhValidation.cs" />
+    <Compile Include="Models\ViewModel\ChangePasswordModel.cs" />
     <Compile Include="Models\ViewModel\ChucNangSelection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -920,6 +951,9 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\BaoLoi\KhongCoQuyen.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\DiemRenLuyen\DanhSachBangDiemRenLuyen.cshtml" />
+    <Content Include="Views\DiemRenLuyen\ChiTietBangDiemRenLuyen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

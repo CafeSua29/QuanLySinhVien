@@ -13,7 +13,7 @@ namespace QuanLySinhVien.App_Start
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            string tkSession = (string)HttpContext.Current.Session["user"];
+            string tkSession = (string)HttpContext.Current.Session["username"];
             if (tkSession != null && tkSession == "admin")
             {
                 return;
