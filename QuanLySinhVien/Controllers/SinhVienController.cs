@@ -175,10 +175,10 @@ namespace QuanLySinhVien.Controllers
 
         [HttpPost]
         [ThanhVienAuthorize(MaChucNang = "TKSV")]
-        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien)
+        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien, string MaKhoa, string MaLop)
         {
             var ds = SinhVienBUS.DanhSachSinhVien();
-            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()))
+            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()) && m.MaLop.Contains(MaLop))
                               select new
                               {
                                   MaSV = item.MaSV,
