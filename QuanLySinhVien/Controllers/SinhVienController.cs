@@ -9,35 +9,24 @@ using System.Globalization;
 using OfficeOpenXml;
 using System.Data.Entity.Migrations;
 using System.Runtime.Remoting.Messaging;
+using QuanLySinhVien.App_Start;
+using QuanLySinhVien.Models.BUS;
+using System.Drawing;
 
 namespace QuanLySinhVien.Controllers
 {
     public class SinhVienController : Controller
     {
-        public bool ChekHoTen(string s)
-        {
-            if (!Char.IsLetter(s[0]))
-            {
-                return false;
-            }
-
-            if (!Char.IsLetter(s[s.Length - 1]))
-            {
-                return false;
-            }
-
-            return s.All(c => Char.IsLetter(c) || c == ' ');
-        }
-
         // GET: SinhVien
+        [ThanhVienAuthorize(MaChucNang = "DSSV")]
         public ActionResult DanhSachSinhVien()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
             List<SinhVien> listSV = db.SinhViens.ToList();
-
             return View(listSV);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "CTSV")]
         public ActionResult ChiTietSinhVien(String masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -46,6 +35,7 @@ namespace QuanLySinhVien.Controllers
             return View(sv);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "TSV")]
         public ActionResult ThemSinhVien()
         {
             ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa");
@@ -54,44 +44,11 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemSinhVien(string MaKhoa, SinhVien sv )
+        [ThanhVienAuthorize(MaChucNang = "TSV")]
+        public ActionResult ThemSinhVien(string MaKhoa, SinhVien sv)
         {
             if (ModelState.IsValid)
             {
-                if(!ChekHoTen(sv.HoSV))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error"] = "Họ của sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
-                if (!ChekHoTen(sv.TenSV))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error2"] = "Tên sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
-                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-
-                if (tuoi < 18)
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
-                    return View(sv);
-                }
-
-                if (!ChekHoTen(sv.QueQuan))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
                 QuanLySinhVienEntities db = new QuanLySinhVienEntities();
                 var check = db.SinhViens.FirstOrDefault(m => m.MaSV == sv.MaSV);
 
@@ -118,6 +75,7 @@ namespace QuanLySinhVien.Controllers
             }
         }
 
+        [ThanhVienAuthorize(MaChucNang = "SSV")]
         public ActionResult SuaSinhVien(string masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -129,44 +87,11 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
+        [ThanhVienAuthorize(MaChucNang = "SSV")]
         public ActionResult SuaSinhVien(SinhVien sv, string MaKhoa)
         {
             if (ModelState.IsValid)
             {
-                if (!ChekHoTen(sv.HoSV))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error"] = "Họ của sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
-                if (!ChekHoTen(sv.TenSV))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error2"] = "Tên sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
-                int tuoi = DateTime.Now.Year - sv.NgaySinh.Year;
-
-                if (tuoi < 18)
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error3"] = "Ngày tháng năm sinh không hợp lệ";
-                    return View(sv);
-                }
-
-                if (!ChekHoTen(sv.QueQuan))
-                {
-                    ViewBag.MaKhoa = new SelectList(KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa", MaKhoa);
-                    ViewBag.MaLop = new SelectList(LopBUS.DanhSachLopTheoKhoa(MaKhoa), "MaLop", "TenLop", sv.MaLop);
-                    TempData["Error4"] = "Quê quán của sinh viên không hợp lệ";
-                    return View(sv);
-                }
-
                 QuanLySinhVienEntities db = new QuanLySinhVienEntities();
 
                 db.SinhViens.AddOrUpdate(sv);
@@ -181,7 +106,6 @@ namespace QuanLySinhVien.Controllers
                 TempData["Error5"] = "Không thể sửa thông tin sinh viên";
                 return View(sv);
             }
-            
         }
 
         [HttpPost]
@@ -197,6 +121,7 @@ namespace QuanLySinhVien.Controllers
             return Json(new { dsLop = dsLop }, JsonRequestBehavior.AllowGet);
         }
 
+        [ThanhVienAuthorize(MaChucNang = "XSV")]
         public ActionResult XoaSinhVien(string masv)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -204,10 +129,10 @@ namespace QuanLySinhVien.Controllers
 
             db.SinhViens.Remove(sv);
             db.SaveChanges();
-
             return RedirectToAction("DanhSachSinhVien");
         }
 
+        [ThanhVienAuthorize(MaChucNang = "XFE")]
         public void XuatFileExcel()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
@@ -249,12 +174,23 @@ namespace QuanLySinhVien.Controllers
         }
 
         [HttpPost]
-        public ActionResult TimSinhVien(String masv)
+        [ThanhVienAuthorize(MaChucNang = "TKSV")]
+        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien)
         {
-            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-            SinhVien sv = db.SinhViens.Find(masv);
-
-            return View(sv);
+            var ds = SinhVienBUS.DanhSachSinhVien();
+            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()))
+                              select new
+                              {
+                                  MaSV = item.MaSV,
+                                  HoSV = item.HoSV,
+                                  TenSV = item.TenSV,
+                                  GioiTinh = item.GioiTinh,
+                                  NgaySinh = String.Format("{0: dd-MM-yyyy}", item.NgaySinh),
+                                  QueQuan = item.QueQuan,
+                                  SoDienThoai = item.SoDienThoai,
+                                  TenLop = LopBUS.LopTheoSinhVien(item.MaLop).TenLop,
+                              }).ToList();
+            return Json(new { dsSinhVien = dsSinhVien }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QuanLySinhVien.Models.VaiTro>
+
+@{
+    ViewBag.Title = "DanhSachVaiTro";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-center mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Mã vai trò</th>
+                                <th>Tên vai trò</th>
+                                <th class="text-right">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var vt in Model)
+                            {
+                                <tr>
+                                    <td>@vt.MaVT</td>
+                                    <td>@vt.TenVT</td>
+                                    <td class="text-right">
+                                        <div class="actions">
+                                            <a href="~/Admin/VaiTro/SuaVaiTro?MaVT=@vt.MaVT" class="btn btn-sm bg-success-light mr-2">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a href="#" onclick="if (confirm('Bạn có chắc muốn xóa vai trò này không?')) { location.href = '/Admin/VaiTro/XoaVaiTro?MaVT=@vt.MaVT' }" class="btn btn-sm bg-danger-light">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,6 +22,7 @@ namespace QuanLySinhVien.Models
     
         public string MaLop { get; set; }
         public string TenLop { get; set; }
+        public Nullable<bool> TrangThai { get; set; }
         public string MaKhoa { get; set; }
     
         public virtual Khoa Khoa { get; set; }

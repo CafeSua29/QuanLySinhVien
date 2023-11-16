@@ -9,7 +9,7 @@
 
 namespace QuanLySinhVien.Models
 {
-    using Microsoft.AspNetCore.Mvc;
+    using QuanLySinhVien.Models.Validation;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -25,15 +25,19 @@ namespace QuanLySinhVien.Models
         [Display(Name = "Mã sinh viên")]
         [Required(ErrorMessage = "Mã sinh viên không được để trống")]
         [RegularExpression(@"^[0-9a-zA-Z]{7}$", ErrorMessage = "Mã sinh viên không hợp lệ")]
+
         public string MaSV { get; set; }
 
         [Required(ErrorMessage = "Họ của sinh viên không được để trống")]
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Họ không hợp lệ")]
         [Display(Name = "Họ sinh viên")]
+        [NameValidation(ErrorMessage = "Họ sinh viên không hợp lệ")]
         public string HoSV { get; set; }
 
         [Required(ErrorMessage = "Tên sinh viên không được để trống")]
+        [NameValidation(ErrorMessage = "Tên sinh viên không hợp lệ")]
         [Display(Name = "Tên sinh viên")]
+
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Tên không hợp lệ")]
         public string TenSV { get; set; }
 
@@ -44,11 +48,13 @@ namespace QuanLySinhVien.Models
         [Required(ErrorMessage = "Ngày sinh chưa được chọn")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        public System.DateTime NgaySinh { get; set; }
+        [NgaySinhValidation]
+        public System.DateTime NgaySinh { get; set; } = DateTime.Now;
 
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Quê quán không hợp lệ")]
         [Display(Name = "Quê quán")]
-        [Required(ErrorMessage = "Quê quán không được để trống")]       
+        [Required(ErrorMessage = "Quê quán không được để trống")]
+        [NameValidation(ErrorMessage = "Quê quán sinh viên không hợp lệ")]
         public string QueQuan { get; set; }
 
         [Display(Name = "Số điện thoại")]
@@ -59,10 +65,9 @@ namespace QuanLySinhVien.Models
         [Display(Name = "Lớp quản lý")]
         [Required(ErrorMessage = "Yêu cầu chọn lớp")]
         public string MaLop { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
-
         public virtual Lop Lop { get; set; }
     }
 }

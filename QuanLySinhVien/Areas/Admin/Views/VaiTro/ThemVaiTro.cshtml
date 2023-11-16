@@ -1,0 +1,78 @@
+﻿@model QuanLySinhVien.Models.VaiTro
+
+@{
+    ViewBag.Title = "ThemVaiTro";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Thêm vai trò</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Admin/VaiTro/DanhSachVaiTro">Vai trò</a></li>
+                    <li class="breadcrumb-item active">Thêm vai trò</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    @using (Html.BeginForm("ThemVaiTro", "VaiTro", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <div class="col-12">
+                            <h5 class="form-title"><span>Thông tin vai trò</span></h5>
+                        </div>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaVT, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MaVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaVT, "", new { @class = "text-danger" })
+                                <div class="text-danger">
+                                    @TempData["Error"]
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TenVT, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenVT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <label class="col-form-label col-md-2">Phân quyền</label>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.Partial("ChucNangSelectionView", QuanLySinhVien.Models.BUS.ChucNangSelectionBUS.DanhSachChucNangSelection())
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

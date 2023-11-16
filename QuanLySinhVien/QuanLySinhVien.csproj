@@ -627,6 +627,7 @@
     <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\teacher-details.html" />
     <Content Include="Assets\img\assets\plugins\fontawesome\css\html-template\teachers.html" />
     <Content Include="Assets\img\assets\plugins\fontawesome\css\index.html" />
+    <Content Include="Assets\img\Error_401.jpg" />
     <Content Include="Assets\img\favicon.png" />
     <Content Include="Assets\img\html-template\assets\css\animate.html" />
     <Content Include="Assets\img\html-template\assets\css\bootstrap.min.html" />
@@ -786,41 +787,81 @@
     <Content Include="Assets\plugins\summernote\dist\summernote-bs4.css" />
     <Content Include="Assets\plugins\summernote\dist\summernote-bs4.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Models\QuanLySinhVienModel.Context.tt">
+    <Content Include="Models\QuanLySinhVien.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
-      <LastGenOutput>QuanLySinhVienModel.Context.cs</LastGenOutput>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
+      <LastGenOutput>QuanLySinhVien.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QuanLySinhVienModel.tt">
+    <Content Include="Models\QuanLySinhVien.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
-      <LastGenOutput>QuanLySinhVienModel.cs</LastGenOutput>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
+      <LastGenOutput>QuanLySinhVien.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorite.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="App_Start\ThanhVienAuthorize.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThanhVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VaiTroController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoLoiController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\KhoaBUS.cs" />
-    <Compile Include="Models\LopBUS.cs" />
-    <Compile Include="Models\QuanLySinhVienModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLySinhVienModel.Context.tt</DependentUpon>
+    <Compile Include="Models\BUS\ChucNangBUS.cs" />
+    <Compile Include="Models\BUS\ChucNangSelectionBUS.cs" />
+    <Compile Include="Models\BUS\KhoaBUS.cs" />
+    <Compile Include="Models\BUS\LopBUS.cs" />
+    <Compile Include="Models\BUS\PhanQuyenBUS.cs" />
+    <Compile Include="Models\BUS\SinhVienBUS.cs" />
+    <Compile Include="Models\BUS\ThanhVienBUS.cs" />
+    <Compile Include="Models\BUS\VaiTroBUS.cs" />
+    <Compile Include="Models\ChucNang.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanLySinhVienModel.cs">
+    <Compile Include="Models\KetQua.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Khoa.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lop.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonHoc.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhanQuyen.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLySinhVien.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanTriVien.cs">
+      <DependentUpon>QuanLySinhVien.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SinhVien.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanLySinhVienModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -841,13 +882,22 @@
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.eot" />
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.ttf" />
     <Content Include="Assets\plugins\summernote\dist\font\summernotec360.woff" />
-    <EntityDeploy Include="Models\QuanLySinhVienModel.edmx">
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanhVien\DanhSachThanhVien.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanhVien\CapNhatThanhVien.cshtml" />
+    <EntityDeploy Include="Models\QuanLySinhVien.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLySinhVienModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanLySinhVien.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QuanLySinhVienModel.edmx.diagram">
-      <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
+    <Content Include="Models\QuanLySinhVien.edmx.diagram">
+      <DependentUpon>QuanLySinhVien.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\ThanhVien\ThemTaiKhoan.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\DanhSachVaiTro.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\ThemVaiTro.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ChucNangSelectionView.cshtml" />
+    <Content Include="Areas\Admin\Views\VaiTro\SuaVaiTro.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\SinhVien\DanhSachSinhVien.cshtml" />
@@ -855,6 +905,9 @@
     <Content Include="Views\SinhVien\ThemSinhVien.cshtml" />
     <Content Include="Views\SinhVien\SuaSinhVien.cshtml" />
     <Content Include="Views\SinhVien\TimSinhVien.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\BaoLoi\KhongCoQuyen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -864,7 +917,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Home\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\AccountAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

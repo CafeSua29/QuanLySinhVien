@@ -29,7 +29,7 @@
             <a class="mobile_btn" id="mobile_btn">
                 <i class="fas fa-bars"></i>
             </a>
-            <ul class="nav user-menu">              
+            <ul class="nav user-menu">
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="~/assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <a class="dropdown-item" href="profile.html">Thông tin tài khoản</a>
-                        <a class="dropdown-item" href="~/Account/Logout">Đăng xuất</a>
+                        <a class="dropdown-item" href="~/Admin/AccountAdmin/Logout">Đăng xuất</a>
                     </div>
                 </li>
             </ul>
@@ -56,19 +56,26 @@
                     <ul>
                         <li class="menu-title">
                             <span></span>
-                        </li>                       
+                        </li>
                         <li class="submenu active">
-                            <a href="#"><i class="fas fa-user-graduate"></i> <span> Sinh viên</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i> <span>Thành viên</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="~/SinhVien/DanhSachSinhVien" @Html.Raw(ViewBag.active == 1 ? "class = 'active'" : "")>Danh sách sinh viên</a></li>
-                                <li><a href="~/SinhVien/ThemSinhVien" @Html.Raw(ViewBag.active == 2 ? "class = 'active'" : "")>Thêm sinh viên</a></li>
+                                <li><a href="~/Admin/ThanhVien/DanhSachThanhVien" @Html.Raw(ViewBag.active == "DanhSachThanhVien" ? "class = 'active'" : "")>Danh sách thành viên</a></li>
+                                <li><a href="~/Admin/ThanhVien/ThemTaiKhoan" @Html.Raw(ViewBag.active == "ThemTaiKhoan" ? "class = 'active'" : "")>Thêm thành viên</a></li>
                             </ul>
-                        </li>                       
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="fas fas fa-shield-alt"></i> <span>Vai trò</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="~/Admin/VaiTro/DanhSachVaiTro" @Html.Raw(ViewBag.active == "DanhSachVaiTro" ? "class = 'active'" : "")>Danh sách vai trò</a></li>
+                                <li><a href="~/Admin/VaiTro/ThemVaiTro" @Html.Raw(ViewBag.active == "ThemVaiTro" ? "class = 'active'" : "")>Thêm vai trò</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="page-wrapper">          
+        <div class="page-wrapper">
             <div>
                 @RenderBody()
             </div>
@@ -82,6 +89,5 @@
     <script src="~/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="~/assets/plugins/datatables/datatables.min.js"></script>
     <script src="~/assets/js/script.js"></script>
-    @RenderSection("scripts", required: false)
 </body>
 </html>
