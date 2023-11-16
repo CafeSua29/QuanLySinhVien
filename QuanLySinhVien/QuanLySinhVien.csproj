@@ -805,20 +805,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\KetQua.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Khoa.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\KhoaBUS.cs" />
-    <Compile Include="Models\Lop.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LopBUS.cs" />
-    <Compile Include="Models\MonHoc.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\QuanLySinhVienModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -833,12 +821,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SinhVien.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
