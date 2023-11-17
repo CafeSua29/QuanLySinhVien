@@ -17,7 +17,7 @@
     <div>
         <div class="col">
             <div class="top-nav-search">
-                @Html.DropDownList(new SelectList(QuanLySinhVien.Models.BUS.HocKy_NamHocBUS.DanhSachHocKy(), "MaHK_NH", "TenHK_NH"), null, "--Chọn học kỳ--", htmlAttributes: new { @class = "form-control", @id = "HocKy_NamHoc" })
+                @Html.DropDownList("MaHK_NH", new SelectList(QuanLySinhVien.Models.BUS.HocKy_NamHocBUS.DanhSachHocKy(), "MaHK_NH", "TenHK_NH"), "--Chọn học kỳ--", htmlAttributes: new { @class = "form-control", @id = "HocKy_NamHoc" })
                 <button class="btn" type="submit" id="btnXem"><i class="fas fa-search">Xem</i></button>
             </div>
             <ul class="breadcrumb">
@@ -93,20 +93,17 @@
     <script>
         $(document).ready(function () {
             $('#btnXem').click(function () {
-                var MaSinhVien = $('#MaSinhVien').val();
-                var TenSinhVien = $('#TenSinhVien').val();
+                var MaHK_NH = $('#HocKy_NamHoc').val();
                 DanhSachSinhVien(MaSinhVien, TenSinhVien);
-                console.log(MaSinhVien, TenSinhVien)
             });
         });
 
-        function DanhSachSinhVien(MaSinhVien, TenSinhVien) {
+        function DanhSachBangDRL(MaHK_NH) {
             $.ajax({
-                url: "/SinhVien/TimKiemSinhVien",
+                url: "/DiemRenLuyen/DanhSachBangDiemRenLuyen",
                 type: 'post',
-                data: { MaSinhVien: MaSinhVien, TenSinhVien: TenSinhVien },
+                data: { MaHK_NH: MaHK_NH },
                 success: function (data) {
-                    console.log('helo');
                     let display = '';
                     $.each(data.dsSinhVien, function (index, item) {
                         display += '<tr><td>' + item.MaSV + '</td>';

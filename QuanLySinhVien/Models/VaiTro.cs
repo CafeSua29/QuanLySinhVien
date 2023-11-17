@@ -21,7 +21,7 @@ namespace QuanLySinhVien.Models
             this.PhanQuyens = new HashSet<PhanQuyen>();
             this.ThanhViens = new HashSet<ThanhVien>();
         }
-
+    
         [Required(ErrorMessage = "Nhập mã vai trò")]
         [Display(Name = "Mã vai trò")]
         public string MaVT { get; set; }

@@ -133,13 +133,37 @@ namespace QuanLySinhVien.Controllers
         }
 
         [ThanhVienAuthorize(MaChucNang = "XFE")]
-        public void XuatFileExcel()
+        public void XuatFileExcel(string MaKhoa, string MaLop)
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-            List<SinhVien> listSV = db.SinhViens.ToList();
+
+            List<SinhVien> listSV;
+
+            if (MaLop == null || MaLop == "" || MaLop == "--Chọn lớp--")
+            {
+                if(MaKhoa == null || MaKhoa == "" || MaKhoa == "--Chọn khoa--")
+                {
+                    listSV = db.SinhViens.ToList();
+                }
+                else
+                {
+                    listSV = (from sv in db.SinhViens
+                              join lop in db.Lops
+                              on sv.MaLop equals lop.MaLop
+                              join khoa in db.Khoas
+                              on lop.MaKhoa equals khoa.MaKhoa
+                              where khoa.MaKhoa == MaKhoa
+                              select sv
+                              ).ToList();
+                }
+            }
+            else
+            {
+                listSV = db.SinhViens.Where(i => i.MaLop == MaLop).ToList();
+            }
 
             ExcelPackage ep = new ExcelPackage();
-            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
+            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Dangngu");
 
             Sheet.Cells["A1"].Value = "Mã sinh viên";
             Sheet.Cells["B1"].Value = "Họ sinh viên";
@@ -149,6 +173,7 @@ namespace QuanLySinhVien.Controllers
             Sheet.Cells["F1"].Value = "Quê quán";
             Sheet.Cells["G1"].Value = "Số điện thoại";
             Sheet.Cells["H1"].Value = "Lớp";
+            Sheet.Cells["I1"].Value = "Điểm trung bình học kỳ";
 
             int row = 2;
 
@@ -162,23 +187,24 @@ namespace QuanLySinhVien.Controllers
                 Sheet.Cells[string.Format("F{0}", row)].Value = sv.QueQuan;
                 Sheet.Cells[string.Format("G{0}", row)].Value = sv.SoDienThoai;
                 Sheet.Cells[string.Format("H{0}", row)].Value = sv.MaLop;
+                Sheet.Cells[string.Format("I{0}", row)].Value = sv.DiemTBHK;
                 row++;
             }
 
             Sheet.Cells["A:AZ"].AutoFitColumns();
             Response.Clear();
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment; filename=" + "Report.xlsx");
+            Response.AddHeader("content-disposition", "attachment; filename=" + "Dangngu.xlsx");
             Response.BinaryWrite(ep.GetAsByteArray());
             Response.End();
         }
 
         [HttpPost]
         [ThanhVienAuthorize(MaChucNang = "TKSV")]
-        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien)
+        public JsonResult TimKiemSinhVien(string MaSinhVien, string TenSinhVien, string MaKhoa, string MaLop)
         {
             var ds = SinhVienBUS.DanhSachSinhVien();
-            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()))
+            var dsSinhVien = (from item in SinhVienBUS.DanhSachSinhVien().Where(m => m.MaSV.Contains(MaSinhVien.Trim()) && (m.HoSV + " " + m.TenSV).Contains(TenSinhVien.Trim()) && m.MaLop.Contains(MaLop))
                               select new
                               {
                                   MaSV = item.MaSV,

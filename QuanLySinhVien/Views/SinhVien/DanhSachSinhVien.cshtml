@@ -9,18 +9,25 @@
 <div class="content container-fluid">
     <div class="page-header">
         <div class="row align-items-center">
-            <div class="col">
-                <div class="top-nav-search">
-                    <input type="text" class="form-control" placeholder="Nhập mã sinh viên" id="MaSinhVien">
-                    <input type="text" class="form-control" placeholder="Nhập tên sinh viên" id="TenSinhVien">
-                    <button class="btn" type="submit" id="btnTimKiem"><i class="fas fa-search">Tìm kiếm</i></button>
+            <div class="form-row col-md-8">
+                <div class="col-md-4 mb-3">
+                    @Html.DropDownList("MaKhoa", new SelectList(QuanLySinhVien.Models.BUS.KhoaBUS.DanhSachKhoa(), "MaKhoa", "TenKhoa"), "--Chọn khoa--", htmlAttributes: new { @class = "form-control", @id = "Khoa", @style = "text-align: center" })
                 </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active"></li>
-                </ul>
+                <div class="col-md-4 mb-3">
+                    @Html.DropDownList("MaLop", new SelectList(new List<QuanLySinhVien.Models.Lop>(), "MaLop", "TenLop"), "--Chọn lớp--", htmlAttributes: new { @class = "form-control", @id = "Lop", @style = "text-align: center" })
+                </div>
+                <div class="col-md-4 mb-3 top-nav-search">
+                    <input type="text" class="form-control" placeholder="Nhập mã sinh viên" id="MaSinhVien">
+                </div>
+                <div class="col-md-4 mb-3 top-nav-search">
+                    <input type="text" class="form-control" placeholder="Nhập tên sinh viên" id="TenSinhVien">
+                </div>
+                <div class="col-md-3 mb-1 top-nav-search">
+                    <button class="btn" type="submit" id="btnTimKiem"><i class="fas fa-search">Tìm Kiếm</i></button>
+                </div>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a href="~/SinhVien/XuatFileExcel" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Tải danh sách</a>
+                <button class="btn btn-outline-primary mr-2" id="btnXuatFile"><i class="fas fa-download"></i> Tải danh sách</button>
                 <a href="~/SinhVien/ThemSinhVien" class="btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
         </div>
@@ -102,35 +109,63 @@
             $('#btnTimKiem').click(function () {
                 var MaSinhVien = $('#MaSinhVien').val();
                 var TenSinhVien = $('#TenSinhVien').val();
-                DanhSachSinhVien(MaSinhVien, TenSinhVien);
-                console.log(MaSinhVien, TenSinhVien)
+                var MaKhoa = $('#Khoa').val();
+                var MaLop = $('#Lop').val();
+                DanhSachSinhVien(MaSinhVien, TenSinhVien, MaKhoa, MaLop);
             });
-        });
 
-        function DanhSachSinhVien(MaSinhVien, TenSinhVien) {
-            $.ajax({
-                url: "/SinhVien/TimKiemSinhVien",
-                type: 'post',
-                data: { MaSinhVien: MaSinhVien, TenSinhVien: TenSinhVien },
-                success: function (data) {
-                    console.log('helo');
-                    let display = '';
-                    $.each(data.dsSinhVien, function (index, item) {
-                        display += '<tr><td>' + item.MaSV + '</td>';
-                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.HoSV + '</a></h2></td>';
-                        display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.TenSV + '</a></h2></td>';
-                        display += '<td>' + item.GioiTinh + '</td>';
-                        display += '<td>' + item.NgaySinh + '</td>';
-                        display += '<td>' + item.QueQuan + '</td>';
-                        display += '<td>' + item.SoDienThoai + '</td>';
-                        display += '<td>' + item.TenLop + '</td>';
-                        display += '<td class="text-right"><div class="actions"><a href="/SinhVien/SuaSinhVien?masv=' + item.MaSV + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>';
-                        display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = "/SinhVien/XoaSinhVien?masv=' + item.MaSV + '"}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
-                    });
-                    $('#tbSinhVien').html(display);
-                }
+            $('#Khoa').change(function () {
+                var id = $('#Khoa').val();
+                DanhSachLopTheoKhoa(id);
             });
-        }
+
+            function DanhSachSinhVien(MaSinhVien, TenSinhVien, MaKhoa, MaLop) {
+                $.ajax({
+                    url: "/SinhVien/TimKiemSinhVien",
+                    type: 'post',
+                    data: { MaSinhVien: MaSinhVien, TenSinhVien: TenSinhVien, MaKhoa: MaKhoa, MaLop: MaLop },
+                    success: function (data) {
+                        let display = '';
+                        $.each(data.dsSinhVien, function (index, item) {
+                            display += '<tr><td>' + item.MaSV + '</td>';
+                            display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.HoSV + '</a></h2></td>';
+                            display += '<td><h2 class="table-avatar"><a href="~/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.TenSV + '</a></h2></td>';
+                            display += '<td>' + item.GioiTinh + '</td>';
+                            display += '<td>' + item.NgaySinh + '</td>';
+                            display += '<td>' + item.QueQuan + '</td>';
+                            display += '<td>' + item.SoDienThoai + '</td>';
+                            display += '<td>' + item.TenLop + '</td>';
+                            display += '<td class="text-right"><div class="actions"><a href="/SinhVien/SuaSinhVien?masv=' + item.MaSV + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>';
+                            display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = "/SinhVien/XoaSinhVien?masv=' + item.MaSV + '"}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
+                        });
+                        $('#tbSinhVien').html(display);
+                    }
+                });
+            }
+
+            function DanhSachLopTheoKhoa(id) {
+                $.ajax({
+                    url: "/SinhVien/DanhSachLopTheoKhoa",
+                    type: 'post',
+                    data: { id: id },
+                    success: function (data) {
+                        let display = '<option value="">--Chọn lớp--</option>';
+                        $.each(data.dsLop, function (index, item) {
+                            display += '<option value = "' + item.MaLop + '">';
+                            display += item.TenLop + '</option>';
+                        });
+                        $('#Lop').html(display);
+                    }
+                });
+            }
+
+            $('#btnXuatFile').click(function () {
+                var url = '/SinhVien/XuatFileExcel';
+                var MaKhoa = $('#Khoa').val();
+                var MaLop = $('#Lop').val();
+
+                window.location.href = url + '?MaKhoa=' + MaKhoa + '&MaLop=' + MaLop;
+            });
+        })
     </script>
-
 }
