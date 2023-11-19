@@ -236,9 +236,9 @@ namespace QuanLySinhVien.Controllers
             foreach(SinhVien sv in list)
             {
                 db.SinhViens.Add(sv);
+                db.SaveChanges();
             }
-
-            db.SaveChanges();
+            
             return RedirectToAction("DanhSachSinhVien");
         }
 
