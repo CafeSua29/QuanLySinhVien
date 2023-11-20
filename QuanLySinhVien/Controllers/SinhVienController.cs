@@ -182,63 +182,135 @@ namespace QuanLySinhVien.Controllers
         //    return list;
         //}
 
+        //[HttpPost]
+        //public ActionResult NhapFileExcel()
+        //{
+        //    QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+        //    List<SinhVien> list = new List<SinhVien>();
+
+        //    if (Request != null)
+        //    {
+        //        HttpPostedFileBase file = Request.Files["file"];
+        //        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+        //        {
+        //            byte[] fileBytes = new byte[file.ContentLength];
+        //            var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+        //            using (var package = new ExcelPackage(file.InputStream))
+        //            {
+        //                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        //                var currentSheet = package.Workbook.Worksheets;
+        //                var workSheet = currentSheet.First();
+        //                var noOfCol = workSheet.Dimension.End.Column;
+        //                var noOfRow = workSheet.Dimension.End.Row;
+
+        //                for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+        //                {
+        //                    var malop = "";
+        //                    var lops = db.Lops.ToList();
+
+        //                    foreach (var lop in lops)
+        //                    {
+        //                        if (lop.TenLop == workSheet.Cells[rowIterator, 8].Value.ToString().Trim())
+        //                        {
+        //                            malop = lop.MaLop;
+        //                        }
+        //                    }
+
+        //                    list.Add(new SinhVien
+        //                    {
+        //                        MaSV = workSheet.Cells[rowIterator, 1].Value.ToString().Trim(),
+        //                        HoSV = workSheet.Cells[rowIterator, 2].Value.ToString().Trim(),
+        //                        TenSV = workSheet.Cells[rowIterator, 3].Value.ToString().Trim(),
+        //                        GioiTinh = workSheet.Cells[rowIterator, 4].Value.ToString().Trim(),
+        //                        NgaySinh = DateTime.ParseExact(workSheet.Cells[rowIterator, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+        //                        QueQuan = workSheet.Cells[rowIterator, 6].Value.ToString().Trim(),
+        //                        SoDienThoai = workSheet.Cells[rowIterator, 7].Value.ToString().Trim(),
+        //                        MaLop = malop,
+        //                        //DiemTBHK = float.Parse(workSheet.Cells[rowIterator, 9].Value.ToString().Trim())
+        //                    });
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    foreach(SinhVien sv in list)
+        //    {
+        //        db.SinhViens.Add(sv);
+        //        db.SaveChanges();
+        //    }
+
+        //    return RedirectToAction("DanhSachSinhVien");
+        //}
+
         [HttpPost]
         public ActionResult NhapFileExcel()
         {
             QuanLySinhVienEntities db = new QuanLySinhVienEntities();
-            List<SinhVien> list = new List<SinhVien>();
 
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["file"];
+
                 if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                 {
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
                     using (var package = new ExcelPackage(file.InputStream))
                     {
-                        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                        var currentSheet = package.Workbook.Worksheets;
-                        var workSheet = currentSheet.First();
-                        var noOfCol = workSheet.Dimension.End.Column;
-                        var noOfRow = workSheet.Dimension.End.Row;
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                        int rowCount = worksheet.Dimension.Rows;
 
-                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        for (int row = 2; row <= rowCount; row++)
                         {
                             var malop = "";
                             var lops = db.Lops.ToList();
 
                             foreach (var lop in lops)
                             {
-                                if (lop.TenLop == workSheet.Cells[rowIterator, 8].Value.ToString().Trim())
+                                if (lop.TenLop == worksheet.Cells[row, 8].Value.ToString().Trim())
                                 {
                                     malop = lop.MaLop;
                                 }
                             }
 
-                            list.Add(new SinhVien
+                            if(worksheet.Cells[row, 9].Value == null)
                             {
-                                MaSV = workSheet.Cells[rowIterator, 1].Value.ToString().Trim(),
-                                HoSV = workSheet.Cells[rowIterator, 2].Value.ToString().Trim(),
-                                TenSV = workSheet.Cells[rowIterator, 3].Value.ToString().Trim(),
-                                GioiTinh = workSheet.Cells[rowIterator, 4].Value.ToString().Trim(),
-                                NgaySinh = DateTime.ParseExact(workSheet.Cells[rowIterator, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
-                                QueQuan = workSheet.Cells[rowIterator, 6].Value.ToString().Trim(),
-                                SoDienThoai = workSheet.Cells[rowIterator, 7].Value.ToString().Trim(),
-                                MaLop = malop,
-                                DiemTBHK = float.Parse(workSheet.Cells[rowIterator, 9].Value.ToString().Trim())
-                            });
+                                SinhVien sv = new SinhVien
+                                {
+                                    MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                                    HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                                    TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                                    GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                                    NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+                                    QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                                    SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                                    MaLop = malop
+                                };
+
+                                db.SinhViens.Add(sv);
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                SinhVien sv = new SinhVien
+                                {
+                                    MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                                    HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                                    TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                                    GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                                    NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+                                    QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                                    SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                                    MaLop = malop,
+                                    DiemTBHK = float.Parse(worksheet.Cells[row, 9].Value.ToString().Trim())
+                                };
+
+                                db.SinhViens.Add(sv);
+                                db.SaveChanges();
+                            }
                         }
                     }
                 }
             }
-            
-            foreach(SinhVien sv in list)
-            {
-                db.SinhViens.Add(sv);
-                db.SaveChanges();
-            }
-            
+
             return RedirectToAction("DanhSachSinhVien");
         }
 
