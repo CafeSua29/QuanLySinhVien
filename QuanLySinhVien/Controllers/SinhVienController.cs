@@ -271,41 +271,58 @@ namespace QuanLySinhVien.Controllers
                                 }
                             }
 
-                            if(worksheet.Cells[row, 9].Value == null)
+                            SinhVien sv = new SinhVien
                             {
-                                SinhVien sv = new SinhVien
-                                {
-                                    MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
-                                    HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
-                                    TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
-                                    GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
-                                    NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
-                                    QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
-                                    SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
-                                    MaLop = malop
-                                };
+                                MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                                HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                                TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                                GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                                NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+                                QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                                SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                                MaLop = malop,
+                                DiemTBHK = (worksheet.Cells[row, 9].Value == null ? -1 : float.Parse(worksheet.Cells[row, 9].Value.ToString().Trim()))
+                            };
 
-                                db.SinhViens.Add(sv);
-                                db.SaveChanges();
-                            }
-                            else
-                            {
-                                SinhVien sv = new SinhVien
-                                {
-                                    MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
-                                    HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
-                                    TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
-                                    GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
-                                    NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
-                                    QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
-                                    SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
-                                    MaLop = malop,
-                                    DiemTBHK = float.Parse(worksheet.Cells[row, 9].Value.ToString().Trim())
-                                };
+                            db.SinhViens.Add(sv);
+                            db.SaveChanges();
 
-                                db.SinhViens.Add(sv);
-                                db.SaveChanges();
-                            }
+                            //if(worksheet.Cells[row, 9].Value == null)
+                            //{
+                            //    SinhVien sv = new SinhVien
+                            //    {
+                            //        MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                            //        HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            //        TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                            //        GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                            //        NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+                            //        QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                            //        SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                            //        MaLop = malop,
+                            //        DiemTBHK = (worksheet.Cells[row, 9].Value == null ? -1 : float.Parse(worksheet.Cells[row, 9].Value.ToString().Trim()))
+                            //    };
+
+                            //    db.SinhViens.Add(sv);
+                            //    db.SaveChanges();
+                            //}
+                            //else
+                            //{
+                            //    SinhVien sv = new SinhVien
+                            //    {
+                            //        MaSV = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                            //        HoSV = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            //        TenSV = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                            //        GioiTinh = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                            //        NgaySinh = DateTime.ParseExact(worksheet.Cells[row, 5].Value.ToString().Trim(), "dd-MM-yyyy", null),
+                            //        QueQuan = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                            //        SoDienThoai = worksheet.Cells[row, 7].Value.ToString().Trim(),
+                            //        MaLop = malop,
+                            //        DiemTBHK = float.Parse(worksheet.Cells[row, 9].Value.ToString().Trim())
+                            //    };
+
+                            //    db.SinhViens.Add(sv);
+                            //    db.SaveChanges();
+                            //}
                         }
                     }
                 }
