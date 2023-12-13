@@ -68,7 +68,7 @@ namespace QuanLySinhVien.Models
         [Required(ErrorMessage = "Yêu cầu chọn lớp")]
         public string MaLop { get; set; }
         public Nullable<float> DiemTBHK { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
         public virtual Lop Lop { get; set; }
