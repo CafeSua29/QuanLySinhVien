@@ -823,8 +823,10 @@
     <Compile Include="Models\BUS\ChucNangBUS.cs" />
     <Compile Include="Models\BUS\ChucNangSelectionBUS.cs" />
     <Compile Include="Models\BUS\HocKy_NamHocBUS.cs" />
+    <Compile Include="Models\BUS\KetQuaBUS.cs" />
     <Compile Include="Models\BUS\KhoaBUS.cs" />
     <Compile Include="Models\BUS\LopBUS.cs" />
+    <Compile Include="Models\BUS\MonHocBUS.cs" />
     <Compile Include="Models\BUS\MucTieuChiBUS.cs" />
     <Compile Include="Models\BUS\PhanQuyenBUS.cs" />
     <Compile Include="Models\BUS\SinhVienBUS.cs" />
@@ -835,9 +837,6 @@
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChucNang.cs">
-      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HocBong.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HocKy.cs">
@@ -886,6 +885,9 @@
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
+      <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>QuanLySinhVienModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -952,6 +954,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\DiemRenLuyen\DanhSachBangDiemRenLuyen.cshtml" />
     <Content Include="Views\DiemRenLuyen\ChiTietBangDiemRenLuyen.cshtml" />
+    <Content Include="Views\HocBong\DanhSachHocBong.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -963,7 +966,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AccountAdmin\" />
-    <Folder Include="Views\HocBong\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

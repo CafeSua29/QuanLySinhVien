@@ -9,7 +9,7 @@ using QuanLySinhVien.App_Start;
 
 namespace QuanLySinhVien.Controllers
 {
-    [ThanhVienAuthorize(MaChucNang = "TKSV")]
+    [ThanhVienAuthorize(MaChucNang = "DRL")]
     public class DiemRenLuyenController : Controller
     {
         

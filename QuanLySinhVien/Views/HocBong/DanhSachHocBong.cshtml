@@ -1,16 +1,16 @@
 ﻿
-
 @{
-    ViewBag.Title = "DanhSachBangDiemRenLuyen";
+    ViewBag.Title = "DanhSachHocBong";
     Layout = "~/Views/Shared/_Layout1.cshtml";
-    ViewBag.active = "DanhSachBangDiemRenLuyen";
+    ViewBag.Active = "DanhSachHocBong";
 }
+
 
 <div class="content container-fluid">
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Danh sách các bảng</h3>
+                <h3 class="page-title">Danh sách học bổng</h3>
             </div>
         </div>
     </div>
@@ -37,12 +37,12 @@
                                     <th>Mã sinh viên</th>
                                     <th>Họ sinh viên</th>
                                     <th>Tên sinh viên</th>
+                                    <th>Giới tính</th>
+                                    <th>Ngày sinh</th>
                                     <th>Lớp</th>
-                                    <th>Điểm tổng</th>
-                                    <th>Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbSV_DRL">
+                            <tbody id="tbSV_HB">
                             </tbody>
                         </table>
                     </div>
@@ -58,26 +58,26 @@
         $(document).ready(function () {
             $('#btnXem').click(function () {
                 var MaHK_NH = $('#HocKy_NamHoc').val();
-                DanhSachSV_DRL(MaHK_NH);
+                DanhSachSV_HB(MaHK_NH);
             });
         });
 
-        function DanhSachSV_DRL(MaHK_NH) {
+        function DanhSachSV_HB(MaHK_NH) {
             $.ajax({
-                url: "/DiemRenLuyen/DanhSachSV_DRL",
+                url: "/HocBong/DanhSachSV_HB",
                 type: 'post',
                 data: { MaHK_NH: MaHK_NH },
                 success: function (data) {
                     let display = '';
-                    $.each(data.dsSV_DRL, function (index, item) {
+                    $.each(data.dsSV_HB, function (index, item) {
                         display += '<tr><td>' + item.MaSV + '</td>';
                         display += '<td><h2 class="table-avatar"><a href="/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.HoSV + '</a></h2></td>';
                         display += '<td><h2 class="table-avatar"><a href="/SinhVien/ChiTietSinhVien?masv=' + item.MaSV + '">' + item.TenSV + '</a></h2></td>';
+                        display += '<td>' + item.GioiTinh + '</td>';
+                        display += '<td>' + item.NgaySinh + '</td>';
                         display += '<td>' + item.TenLop + '</td>';
-                        display += '<td>' + item.DiemTong + "/" + item.DiemToiDa + '</td>';
-                        display += '<td><div class="actions"><a href="/DiemRenLuyen/ChiTietBangDiemRenLuyen?MaBangDRL=' + item.MaBangDRL + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a></td>';
                     });
-                    $('#tbSV_DRL').html(display);
+                    $('#tbSV_HB').html(display);
                 }
             });
         }

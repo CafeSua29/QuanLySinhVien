@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="MaBangDRL" />
           </Key>
-          <Property Name="MaBangDRL" Type="int" Nullable="false" />
+          <Property Name="MaBangDRL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DiemToiDa" Type="int" />
           <Property Name="DiemTong" Type="int" />
           <Property Name="MaHK_NH" Type="int" />
@@ -30,15 +30,6 @@
           </Key>
           <Property Name="MaCN" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TenCN" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="HocBong">
-          <Key>
-            <PropertyRef Name="MaHB" />
-          </Key>
-          <Property Name="MaHB" Type="int" Nullable="false" />
-          <Property Name="MaSV" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SoTien" Type="real" />
-          <Property Name="MaHK_NH" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HocKy">
           <Key>
@@ -89,7 +80,7 @@
           <Property Name="MaMH" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TenMH" Type="nvarchar" MaxLength="50" />
           <Property Name="SoTin" Type="int" />
-          <Property Name="BaoLuu" Type="bit" />
+          <Property Name="MaHK_NH" Type="int" />
         </EntityType>
         <EntityType Name="MucTieuChi">
           <Key>
@@ -134,6 +125,16 @@
           <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
           <Property Name="MaLop" Type="nvarchar" MaxLength="50" />
           <Property Name="DiemTBHK" Type="real" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -223,34 +224,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HocBong_HocKy_NamHoc">
-          <End Role="HocKy_NamHoc" Type="Self.HocKy_NamHoc" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HocBong" Type="Self.HocBong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HocKy_NamHoc">
-              <PropertyRef Name="MaHK_NH" />
-            </Principal>
-            <Dependent Role="HocBong">
-              <PropertyRef Name="MaHK_NH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HocBong_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HocBong" Type="Self.HocBong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="MaSV" />
-            </Principal>
-            <Dependent Role="HocBong">
-              <PropertyRef Name="MaSV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HocKy_NamHoc_HocKy">
           <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -318,6 +291,18 @@
             </Principal>
             <Dependent Role="Lop">
               <PropertyRef Name="MaKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonHoc_HocKy_NamHoc">
+          <End Role="HocKy_NamHoc" Type="Self.HocKy_NamHoc" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKy_NamHoc">
+              <PropertyRef Name="MaHK_NH" />
+            </Principal>
+            <Dependent Role="MonHoc">
+              <PropertyRef Name="MaHK_NH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -417,7 +402,6 @@
           <EntitySet Name="BangDiemRenLuyen" EntityType="Self.BangDiemRenLuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietTieuChi" EntityType="Self.ChiTietTieuChi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HocBong" EntityType="Self.HocBong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HocKy" EntityType="Self.HocKy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HocKy_NamHoc" EntityType="Self.HocKy_NamHoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KetQua" EntityType="Self.KetQua" Schema="dbo" store:Type="Tables" />
@@ -429,6 +413,7 @@
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuanTriVien" EntityType="Self.QuanTriVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhVien" EntityType="Self.ThanhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TieuChi" EntityType="Self.TieuChi" Schema="dbo" store:Type="Tables" />
@@ -449,14 +434,6 @@
             <End Role="TieuChi" EntitySet="TieuChi" />
             <End Role="ChiTietTieuChi" EntitySet="ChiTietTieuChi" />
           </AssociationSet>
-          <AssociationSet Name="FK_HocBong_HocKy_NamHoc" Association="Self.FK_HocBong_HocKy_NamHoc">
-            <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
-            <End Role="HocBong" EntitySet="HocBong" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HocBong_SinhVien" Association="Self.FK_HocBong_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhVien" />
-            <End Role="HocBong" EntitySet="HocBong" />
-          </AssociationSet>
           <AssociationSet Name="FK_HocKy_NamHoc_HocKy" Association="Self.FK_HocKy_NamHoc_HocKy">
             <End Role="HocKy" EntitySet="HocKy" />
             <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
@@ -476,6 +453,10 @@
           <AssociationSet Name="FK_Lop_Khoa" Association="Self.FK_Lop_Khoa">
             <End Role="Khoa" EntitySet="Khoa" />
             <End Role="Lop" EntitySet="Lop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonHoc_HocKy_NamHoc" Association="Self.FK_MonHoc_HocKy_NamHoc">
+            <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
+            <End Role="MonHoc" EntitySet="MonHoc" />
           </AssociationSet>
           <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
             <End Role="ChucNang" EntitySet="ChucNang" />
@@ -515,7 +496,7 @@
           <Key>
             <PropertyRef Name="MaBangDRL" />
           </Key>
-          <Property Name="MaBangDRL" Type="Int32" Nullable="false" />
+          <Property Name="MaBangDRL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiemToiDa" Type="Int32" />
           <Property Name="DiemTong" Type="Int32" />
           <Property Name="MaHK_NH" Type="Int32" />
@@ -543,17 +524,6 @@
           <Property Name="TenCN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_ChucNang" FromRole="ChucNang" ToRole="PhanQuyen" />
         </EntityType>
-        <EntityType Name="HocBong">
-          <Key>
-            <PropertyRef Name="MaHB" />
-          </Key>
-          <Property Name="MaHB" Type="Int32" Nullable="false" />
-          <Property Name="MaSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SoTien" Type="Single" />
-          <Property Name="MaHK_NH" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HocKy_NamHoc" Relationship="Self.FK_HocBong_HocKy_NamHoc" FromRole="HocBong" ToRole="HocKy_NamHoc" />
-          <NavigationProperty Name="SinhVien" Relationship="Self.FK_HocBong_SinhVien" FromRole="HocBong" ToRole="SinhVien" />
-        </EntityType>
         <EntityType Name="HocKy">
           <Key>
             <PropertyRef Name="MaHocKy" />
@@ -571,9 +541,9 @@
           <Property Name="MaHocKy" Type="Int32" />
           <Property Name="MaNamHoc" Type="Int32" />
           <NavigationProperty Name="BangDiemRenLuyens" Relationship="Self.FK_BangDiemRenLuyen_HocKy_NamHoc" FromRole="HocKy_NamHoc" ToRole="BangDiemRenLuyen" />
-          <NavigationProperty Name="HocBongs" Relationship="Self.FK_HocBong_HocKy_NamHoc" FromRole="HocKy_NamHoc" ToRole="HocBong" />
           <NavigationProperty Name="HocKy" Relationship="Self.FK_HocKy_NamHoc_HocKy" FromRole="HocKy_NamHoc" ToRole="HocKy" />
           <NavigationProperty Name="NamHoc" Relationship="Self.FK_HocKy_NamHoc_NamHoc" FromRole="HocKy_NamHoc" ToRole="NamHoc" />
+          <NavigationProperty Name="MonHocs" Relationship="Self.FK_MonHoc_HocKy_NamHoc" FromRole="HocKy_NamHoc" ToRole="MonHoc" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -613,7 +583,8 @@
           <Property Name="MaMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoTin" Type="Int32" />
-          <Property Name="BaoLuu" Type="Boolean" />
+          <Property Name="MaHK_NH" Type="Int32" />
+          <NavigationProperty Name="HocKy_NamHoc" Relationship="Self.FK_MonHoc_HocKy_NamHoc" FromRole="MonHoc" ToRole="HocKy_NamHoc" />
           <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_MonHoc" FromRole="MonHoc" ToRole="KetQua" />
         </EntityType>
         <EntityType Name="MucTieuChi">
@@ -665,9 +636,18 @@
           <Property Name="MaLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiemTBHK" Type="Single" />
           <NavigationProperty Name="BangDiemRenLuyens" Relationship="Self.FK_BangDiemRenLuyen_SinhVien" FromRole="SinhVien" ToRole="BangDiemRenLuyen" />
-          <NavigationProperty Name="HocBongs" Relationship="Self.FK_HocBong_SinhVien" FromRole="SinhVien" ToRole="HocBong" />
           <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_SinhVien" FromRole="SinhVien" ToRole="KetQua" />
           <NavigationProperty Name="Lop" Relationship="Self.FK_SinhVien_Lop" FromRole="SinhVien" ToRole="Lop" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -779,34 +759,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HocBong_HocKy_NamHoc">
-          <End Role="HocKy_NamHoc" Type="Self.HocKy_NamHoc" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HocBong" Type="Self.HocBong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HocKy_NamHoc">
-              <PropertyRef Name="MaHK_NH" />
-            </Principal>
-            <Dependent Role="HocBong">
-              <PropertyRef Name="MaHK_NH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HocBong_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HocBong" Type="Self.HocBong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="MaSV" />
-            </Principal>
-            <Dependent Role="HocBong">
-              <PropertyRef Name="MaSV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HocKy_NamHoc_HocKy">
           <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -832,6 +784,18 @@
             </Principal>
             <Dependent Role="HocKy_NamHoc">
               <PropertyRef Name="MaNamHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonHoc_HocKy_NamHoc">
+          <End Role="HocKy_NamHoc" Type="Self.HocKy_NamHoc" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKy_NamHoc">
+              <PropertyRef Name="MaHK_NH" />
+            </Principal>
+            <Dependent Role="MonHoc">
+              <PropertyRef Name="MaHK_NH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -959,7 +923,6 @@
           <EntitySet Name="BangDiemRenLuyens" EntityType="Self.BangDiemRenLuyen" />
           <EntitySet Name="ChiTietTieuChis" EntityType="Self.ChiTietTieuChi" />
           <EntitySet Name="ChucNangs" EntityType="Self.ChucNang" />
-          <EntitySet Name="HocBongs" EntityType="Self.HocBong" />
           <EntitySet Name="HocKies" EntityType="Self.HocKy" />
           <EntitySet Name="HocKy_NamHoc" EntityType="Self.HocKy_NamHoc" />
           <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
@@ -971,6 +934,7 @@
           <EntitySet Name="PhanQuyens" EntityType="Self.PhanQuyen" />
           <EntitySet Name="QuanTriViens" EntityType="Self.QuanTriVien" />
           <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
           <EntitySet Name="TieuChis" EntityType="Self.TieuChi" />
@@ -995,14 +959,6 @@
             <End Role="ChucNang" EntitySet="ChucNangs" />
             <End Role="PhanQuyen" EntitySet="PhanQuyens" />
           </AssociationSet>
-          <AssociationSet Name="FK_HocBong_HocKy_NamHoc" Association="Self.FK_HocBong_HocKy_NamHoc">
-            <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
-            <End Role="HocBong" EntitySet="HocBongs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HocBong_SinhVien" Association="Self.FK_HocBong_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhViens" />
-            <End Role="HocBong" EntitySet="HocBongs" />
-          </AssociationSet>
           <AssociationSet Name="FK_HocKy_NamHoc_HocKy" Association="Self.FK_HocKy_NamHoc_HocKy">
             <End Role="HocKy" EntitySet="HocKies" />
             <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
@@ -1010,6 +966,10 @@
           <AssociationSet Name="FK_HocKy_NamHoc_NamHoc" Association="Self.FK_HocKy_NamHoc_NamHoc">
             <End Role="NamHoc" EntitySet="NamHocs" />
             <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonHoc_HocKy_NamHoc" Association="Self.FK_MonHoc_HocKy_NamHoc">
+            <End Role="HocKy_NamHoc" EntitySet="HocKy_NamHoc" />
+            <End Role="MonHoc" EntitySet="MonHocs" />
           </AssociationSet>
           <AssociationSet Name="FK_KetQua_MonHoc" Association="Self.FK_KetQua_MonHoc">
             <End Role="MonHoc" EntitySet="MonHocs" />
@@ -1082,16 +1042,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HocBongs">
-            <EntityTypeMapping TypeName="QuanLySinhVienModel.HocBong">
-              <MappingFragment StoreEntitySet="HocBong">
-                <ScalarProperty Name="MaHB" ColumnName="MaHB" />
-                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
-                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
-                <ScalarProperty Name="MaHK_NH" ColumnName="MaHK_NH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HocKies">
             <EntityTypeMapping TypeName="QuanLySinhVienModel.HocKy">
               <MappingFragment StoreEntitySet="HocKy">
@@ -1144,7 +1094,7 @@
                 <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="TenMH" ColumnName="TenMH" />
                 <ScalarProperty Name="SoTin" ColumnName="SoTin" />
-                <ScalarProperty Name="BaoLuu" ColumnName="BaoLuu" />
+                <ScalarProperty Name="MaHK_NH" ColumnName="MaHK_NH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1193,6 +1143,17 @@
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="MaLop" ColumnName="MaLop" />
                 <ScalarProperty Name="DiemTBHK" ColumnName="DiemTBHK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLySinhVienModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

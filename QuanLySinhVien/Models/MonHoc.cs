@@ -23,8 +23,9 @@ namespace QuanLySinhVien.Models
         public string MaMH { get; set; }
         public string TenMH { get; set; }
         public Nullable<int> SoTin { get; set; }
-        public Nullable<bool> BaoLuu { get; set; }
+        public Nullable<int> MaHK_NH { get; set; }
     
+        public virtual HocKy_NamHoc HocKy_NamHoc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
     }

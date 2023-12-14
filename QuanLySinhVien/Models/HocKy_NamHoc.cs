@@ -18,7 +18,7 @@ namespace QuanLySinhVien.Models
         public HocKy_NamHoc()
         {
             this.BangDiemRenLuyens = new HashSet<BangDiemRenLuyen>();
-            this.HocBongs = new HashSet<HocBong>();
+            this.MonHocs = new HashSet<MonHoc>();
         }
     
         public int MaHK_NH { get; set; }
@@ -28,9 +28,9 @@ namespace QuanLySinhVien.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BangDiemRenLuyen> BangDiemRenLuyens { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HocBong> HocBongs { get; set; }
         public virtual HocKy HocKy { get; set; }
         public virtual NamHoc NamHoc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MonHoc> MonHocs { get; set; }
     }
 }

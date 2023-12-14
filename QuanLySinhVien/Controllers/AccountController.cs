@@ -27,8 +27,8 @@ namespace QuanLySinhVien.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tvSession = db.TaiKhoans.Where(m => m.UserName.Equals(UserName) && m.Password.Equals(Password, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-                if (tvSession != null)
+                var tvSession = db.TaiKhoans.Where(m => m.UserName.Equals(UserName)).FirstOrDefault();
+                if (tvSession != null && tvSession.Password.Equals(Password))
                 {
                     Session["username"] = tvSession.UserName;
                     if (tvSession.UserName == "admin")

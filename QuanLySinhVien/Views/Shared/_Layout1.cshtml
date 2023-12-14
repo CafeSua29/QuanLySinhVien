@@ -44,7 +44,6 @@
                                 <p class="text-muted mb-0">Quản lý</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="profile.html">Thông tin tài khoản</a>
                         <a class="dropdown-item" href="~/Account/ChangePassword">Đổi mật khẩu</a>
                         <a class="dropdown-item" href="~/Account/Logout">Đăng xuất</a>
                     </div>
@@ -69,6 +68,12 @@
                             <a href="#"><i class="fas fa-user-graduate"></i> <span>Điểm rèn luyện</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="~/DiemRenLuyen/DanhSachBangDiemRenLuyen" @Html.Raw(ViewBag.active == "DanhSachBangDiemRenLuyen" ? "class = 'active'" : "")>Danh sách bảng điểm rèn luyện</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="fas fa-user-graduate"></i> <span>Học bổng</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="~/HocBong/DanhSachHocBong" @Html.Raw(ViewBag.active == "DanhSachHocBong" ? "class = 'active'" : "")>Danh sách học bổng</a></li>
                             </ul>
                         </li>
                     </ul>

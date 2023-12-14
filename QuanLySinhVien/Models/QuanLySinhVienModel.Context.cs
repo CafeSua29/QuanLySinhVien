@@ -28,7 +28,6 @@ namespace QuanLySinhVien.Models
         public virtual DbSet<BangDiemRenLuyen> BangDiemRenLuyens { get; set; }
         public virtual DbSet<ChiTietTieuChi> ChiTietTieuChis { get; set; }
         public virtual DbSet<ChucNang> ChucNangs { get; set; }
-        public virtual DbSet<HocBong> HocBongs { get; set; }
         public virtual DbSet<HocKy> HocKies { get; set; }
         public virtual DbSet<HocKy_NamHoc> HocKy_NamHoc { get; set; }
         public virtual DbSet<KetQua> KetQuas { get; set; }
@@ -40,6 +39,7 @@ namespace QuanLySinhVien.Models
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<QuanTriVien> QuanTriViens { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
         public virtual DbSet<TieuChi> TieuChis { get; set; }
