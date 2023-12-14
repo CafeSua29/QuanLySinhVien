@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLySinhVien.App_Start;
 
 namespace QuanLySinhVien.Controllers
 {
+    [ThanhVienAuthorize(MaChucNang = "HB")]
     public class HocBongController : Controller
     {
         // GET: HocBong

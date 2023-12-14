@@ -941,6 +941,7 @@
     <Content Include="Models\QuanLySinhVienModel.edmx.diagram">
       <DependentUpon>QuanLySinhVienModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\ThanhVien\ChiTietThanhVien.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\SinhVien\DanhSachSinhVien.cshtml" />

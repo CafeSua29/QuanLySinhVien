@@ -10,15 +10,7 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <div class="top-nav-search">
-                        <form action="~/sinhvien/timsinhvien" method="post">
-                            <input type="text" class="form-control" placeholder="nhập thông tin tìm kiếm" name="masv">
-                            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active"></li>
-                </ul>
+                
             </div>
             <div class="col-auto text-right float-right ml-auto">
                 <a href="~/Admin/ThanhVien/ThemTaiKhoan" class="btn btn-primary"><i class="fas fa-plus"></i></a>
@@ -50,14 +42,11 @@
                                     <tr>
                                         <td>@tv.UserName</td>
                                         <td>
-                                            <h2 class="table-avatar">
-                                                <a href="~/Admin/ThanhVien/ChiTietThanhVien?UserName = @tv.UserName" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
-                                                <a href="~/SinhVien/ChiTietThanhVien?UserName = @tv.UserName">@tv.HoTV</a>
+                                            <h2 class="table-avatar">@tv.HoTV
                                             </h2>
                                         </td>
                                         <td>
-                                            <h2 class="table-avatar">
-                                                <a href="~/SinhVien/ChiTietThanhVien?UserName = @tv.UserName">@tv.TenTV</a>
+                                            <h2 class="table-avatar">@tv.TenTV
                                             </h2>
                                         </td>
                                         <td>@tv.GioiTinh</td>

@@ -1,0 +1,79 @@
+﻿@model QuanLySinhVien.Models.ThanhVien
+
+@{
+    ViewBag.Title = "ChiTietThanhVien";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ChiTietThanhVien</h2>
+
+<div>
+    <h4>ThanhVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueQuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiKhoan.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiKhoan.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VaiTro.TenVT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VaiTro.TenVT)
+        </dd>
+
+    </dl>
+</div>

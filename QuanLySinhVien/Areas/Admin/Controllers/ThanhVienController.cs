@@ -97,5 +97,12 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("DanhSachThanhVien");
         }
+
+        public ActionResult ChiTietThanhVien(string UserName)
+        {
+            QuanLySinhVienEntities db = new QuanLySinhVienEntities();
+            ThanhVien tv = db.ThanhViens.Find(UserName);
+            return View(tv);
+        }
     }
 }
