@@ -136,7 +136,7 @@
                             display += '<td>' + item.SoDienThoai + '</td>';
                             display += '<td>' + item.TenLop + '</td>';
                             display += '<td class="text-right"><div class="actions"><a href="/SinhVien/SuaSinhVien?masv=' + item.MaSV + '" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>';
-                            display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = "/SinhVien/XoaSinhVien?masv=' + item.MaSV + '"}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
+                            display += '<a onclick="if (confirm(\'Bạn có chắc muốn xóa sinh viên này không ?\')) { location.href = \'/SinhVien/XoaSinhVien?masv=' + item.MaSV + '\'}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a></div></td></tr>';
                         });
                         $('#tbSinhVien').html(display);
                     }

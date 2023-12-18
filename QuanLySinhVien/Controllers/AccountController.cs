@@ -61,6 +61,7 @@ namespace QuanLySinhVien.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ThanhVienAuthorize(MaChucNang = "TKSV")]
         public ActionResult ChangePassword(ChangePasswordModel ChPass)
         {
             if (ModelState.IsValid)
@@ -69,7 +70,7 @@ namespace QuanLySinhVien.Controllers
                 var tk = db.TaiKhoans.FirstOrDefault(m => m.UserName == UserName);
                 if (tk.Password.Equals(ChPass.CurrentPassword))
                 {
-                    tk.Password = ChPass.ConfirmPassword;
+                    tk.Password = ChPass.NewPassword;
                     db.SaveChanges();
                     return RedirectToAction("Logout", "Account");
                 }
